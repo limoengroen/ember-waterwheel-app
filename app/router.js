@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('articles');
+  this.route('article', { path: '/articles/:nid'});
 });
 
 export default Router;
