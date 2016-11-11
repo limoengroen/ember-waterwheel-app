@@ -1,0 +1,9 @@
+<h1>Create a new Article</h1>
+
+<form {{action 'save' model on="submit"}}>
+    <label for="title">Title</label>
+    {{input value=model.title name="title"}}<br/>
+    <label for="body">Body</label>
+    {{input value=model.body.value name="body"}}<br/>
+    <button>Create</button>
+</form>

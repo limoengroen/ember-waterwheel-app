@@ -1,5 +1,9 @@
 <h2>Articles</h2>
 
+{{#link-to 'articles.new'}}New Article{{/link-to}}
+
+{{outlet}}
+
 {{#each model as |article|}}
     <h3><a href="/article/{{article.uuid}}">{{article.title}}</a></h3>
     <ul>
