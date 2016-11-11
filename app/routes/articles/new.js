@@ -7,7 +7,8 @@ export default Ember.Route.extend({
     actions: {
         save(record) {
             console.log(record);
-            record.save().then(() => this.transitionTo('articles'));
+            record.save().then(() => this.transitionTo('articles'))
+                .catch((reason) => console.log("Save failed: " + reason));
         },
         willTransition() {
             this._super(...arguments);
