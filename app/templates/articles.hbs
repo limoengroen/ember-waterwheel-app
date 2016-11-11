@@ -1,5 +1,10 @@
 <h2>Articles</h2>
 
-
-
-{{outlet}}
+{{#each model as |article|}}
+    <h3>{{article.title}}</h3>
+    <ul>
+        <li>NID: {{article.nid}}</li>
+        <li>UUID: {{article.uuid}}</li>
+        <li>Created: {{article.created}}</li>
+    </ul>
+{{/each}}
