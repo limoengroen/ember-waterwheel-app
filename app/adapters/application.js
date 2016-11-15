@@ -1,8 +1,10 @@
 import DS from 'ember-data';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
-export default DS.JSONAPIAdapter.extend({
+export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     host: 'http://ember-crud.dd:8080',
     namespace: 'api',
+    authorizer: 'authorizer:custom',
 
     pathForType: function (type) {
         let entityPath;

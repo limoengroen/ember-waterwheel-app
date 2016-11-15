@@ -11,6 +11,13 @@
             Articles
         {{/link-to}}
     </li>
+    <li class="menu-item">
+        {{#if session.isAuthenticated}}
+            <a {{action 'invalidateSession'}}>Logout</a>
+        {{else}}
+            {{#link-to 'login'}}Login{{/link-to}}
+        {{/if}}
+    </li>
 </ul>
 
 {{outlet}}
