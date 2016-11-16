@@ -16,6 +16,6 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     },
 
     buildURL: function (modelName, id, snapshot, requestType, query) {
-        return this._super(modelName, id, snapshot, requestType, query) + '?_format=api_json';
+        return this._super(...arguments) + '?_format=api_json';
     }
 });
