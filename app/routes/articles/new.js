@@ -10,8 +10,20 @@ export default Ember.Route.extend(/*AuthenticatedRouteMixin,*/ {
 
     actions: {
         save(record) {
-            console.log(record);
-            record.save().then(() => this.transitionTo('articles'))
+            let body = {
+                value: record.get('body__value'),
+                summary: record.get('body__summary'),
+                format: 'plain_text'
+            };
+/*            let body = record.get('body');
+            body.format = 'plain_text';
+            record.set('body', body);*/
+            record.set('body', body);
+
+            console.log(record.get('body'));
+//            debugger;
+            record.save()
+                .then(() => this.transitionTo('articles'))
                 .catch((reason) => console.log("Save failed: " + reason));
         },
         willTransition() {

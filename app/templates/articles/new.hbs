@@ -3,7 +3,9 @@
 <form {{action 'save' model on="submit"}}>
     <label for="title">Title</label>
     {{input value=model.title name="title"}}<br/>
-    <label for="body">Body</label>
-    {{textarea value=model.body.value name="body"}}<br/>
+    <label for="body__summary">Summary</label>
+    {{textarea value=model.body__summary name="body__summary"}}<br/>
+    <label for="body__value">Body</label>
+    {{textarea value=model.body__value name="body__value"}}<br/>
     <button type="submit">Create</button>
 </form>
