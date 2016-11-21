@@ -11,7 +11,7 @@ Router.map(function() {
     this.route('new');
   });
   this.route('article', { path: '/article/:uuid'});
-  this.route('login')
+  this.route('login');
 });
 
 export default Router;

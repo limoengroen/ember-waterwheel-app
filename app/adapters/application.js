@@ -6,7 +6,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     namespace: 'api',
     authorizer: 'authorizer:custom',
 
-    pathForType: function (type) {
+    pathForType(type) {
         let entityPath;
         switch(type) {
             case 'node--article':
@@ -15,7 +15,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
         return entityPath;
     },
 
-    buildURL: function (modelName, id, snapshot, requestType, query) {
-        return this._super(...arguments) + '?_format=api_json';
+    buildURL(/*modelName, id, snapshot, requestType, query*/) {
+        return this._super(...arguments) + '?_format=api_json' /*+ '&XDEBUG_SESSION_START=PHPSTORM'*/;
     }
 });
