@@ -11,6 +11,10 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
         switch(type) {
             case 'node--article':
                 entityPath = 'node/article';
+                break;
+            case 'user--user':
+                entityPath = 'user/user';
+                break;
         }
         return entityPath;
     },

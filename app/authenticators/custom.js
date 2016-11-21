@@ -1,19 +1,32 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 
-const { RSVP: { Promise }, isEmpty, run, $: jQuery, assign: emberAssign, merge } = Ember;
+const { RSVP: { Promise }, isEmpty } = Ember;
 
 export default Base.extend({
   restore(data) {
-    Promise.resolve(data);
-  },
-
-  authenticate(/*args*/) {
+//    debugger;
+//    Promise.resolve(data);
+    console.log("restore data:" + JSON.stringify(data));
     return new Promise((resolve, reject) => {
-      resolve();
+      if (isEmpty(data.hash)) {
+        reject();
+      }
+      else {
+        resolve(data);
+      }
     });
   },
 
-  invalidate(data) {
-  }
+  authenticate(username, password) {
+//    debugger;
+    return new Promise((resolve, reject) => {
+      let data = {
+        uid: 52,
+        username: username,
+        hash: 'anNvbmFwaTpqc29uYXBp'
+      };
+      resolve(data);
+    });
+  },
 });

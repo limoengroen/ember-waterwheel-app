@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(/*AuthenticatedRouteMixin,*/ {
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
     authorizer: 'authorizer:custom',
 
     model(params) {
@@ -15,12 +15,9 @@ export default Ember.Route.extend(/*AuthenticatedRouteMixin,*/ {
                 summary: record.get('body__summary'),
                 format: 'plain_text'
             };
-/*            let body = record.get('body');
-            body.format = 'plain_text';
-            record.set('body', body);*/
             record.set('body', body);
 
-            console.log(record.get('body'));
+//            console.log(record.get('body'));
 //            debugger;
             record.save()
                 .then(() => this.transitionTo('articles'))

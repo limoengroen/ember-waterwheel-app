@@ -12,8 +12,13 @@
         {{/link-to}}
     </li>
     <li class="menu-item">
+        {{#link-to 'users'}}
+            Users
+        {{/link-to}}
+    </li>
+    <li class="menu-item">
         {{#if session.isAuthenticated}}
-            <a {{action 'invalidateSession'}}>Logout</a>
+            <a {{action 'invalidateSession'}} href="#">Logout</a>
         {{else}}
             {{#link-to 'login'}}Login{{/link-to}}
         {{/if}}

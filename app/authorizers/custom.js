@@ -1,8 +1,12 @@
+import Ember from 'ember';
 import Base from 'ember-simple-auth/authorizers/base';
+
+const { isEmpty } = Ember;
 
 export default Base.extend({
   authorize(data, block) {
-    console.log('authorize() called');
-    block('Authorization', 'Basic anNvbmFwaTpqc29uYXBp');
+    if (!isEmpty(data.hash)) {
+      block('Authorization', `Basic ${data.hash}`);
+    }
   }
 });

@@ -12,6 +12,7 @@ Router.map(function() {
   });
   this.route('article', { path: '/article/:uuid'});
   this.route('login');
+  this.route('users');
 });
 
 export default Router;

@@ -1,0 +1,10 @@
+<h2>All Users</h2>
+
+{{#each model as |user|}}
+    <h3>{{user.name}}</h3>
+    <ul>
+        <li>UID: {{user.uid}}</li>
+        <li>UUID: {{user.uuid}}</li>
+        <li>E-mail: {{user.mail}}</li>
+    </ul>
+{{/each}}
