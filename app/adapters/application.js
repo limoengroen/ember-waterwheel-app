@@ -7,6 +7,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     authorizer: 'authorizer:custom',
 
     pathForType(type) {
+        let originalPath = this._super(type);
         let entityPath;
         switch(type) {
             case 'node--article':
@@ -16,10 +17,14 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
                 entityPath = 'user/user';
                 break;
         }
+//        console.log(`original path: ${originalPath}  new path: ${entityPath}`);
         return entityPath;
     },
 
     buildURL(/*modelName, id, snapshot, requestType, query*/) {
+//        console.log(`buildURL arguments: ${modelName}, ${id}, ${requestType}`);
+//        console.log(JSON.stringify(query));
+
         return this._super(...arguments) + '?_format=api_json' /*+ '&XDEBUG_SESSION_START=PHPSTORM'*/;
     }
 });

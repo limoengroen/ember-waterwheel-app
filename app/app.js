@@ -9,7 +9,7 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 
 // Log exceptions in promises
 Ember.RSVP.configure('onerror', function(e) {
-  console.log(e.message);
+//  console.log(e.message);
   console.log(e.stack);
 });
 
