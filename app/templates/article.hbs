@@ -6,8 +6,12 @@
     <li>Author: {{model.uid.name}}</li>
 </ul>
 
-<h3>Summary:</h3>
-<p>{{model.body.summary}}</p>
+{{#form-for model as |form|}}
+    {{#fields-for model.body as |body|}}
+        {{body.textarea-field "summary"}}
+        {{body.textarea-field "value"}}
+        {{body.select-field "format" "basic_html restricted_html full_html plain_text"}}
+    {{/fields-for}}
 
-<h3>Body:</h3>
-<p>{{model.body.value}}</p>
+    {{form.submit "Save"}}
+{{/form-for}}
