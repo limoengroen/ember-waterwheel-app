@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Controller.extend({
-    session: Ember.inject.service('session'),
+    session: service(),
 
     actions: {
         authenticate() {
             let { username, password } = this.getProperties('username', 'password');
-//            debugger;
             this.get('session').authenticate('authenticator:custom', username, password).catch((reason) => {
                 this.set('errorMessage', reason.error || reason);
             });

@@ -5,7 +5,6 @@ const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     currentUser: service(),
-//    authorizer: 'authorizer:custom',
 
     model(params) {
         return this.store.createRecord('node--article', params);
@@ -21,8 +20,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             record.set('body', body);
             record.set('uid', this.get('currentUser').get('user'));
 
-//            console.log(record.get('body'));
-//            debugger;
             record.save()
                 .then(() => this.transitionTo('articles'))
                 .catch((reason) => console.log("Save failed: " + reason));
