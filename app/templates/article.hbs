@@ -1,17 +1,22 @@
-<h2>{{model.title}}</h2>
-<ul>
-    <li>NID: {{model.nid}}</li>
-    <li>UUID: {{model.uuid}}</li>
-    <li>Created: {{model.createdDate}}</li>
-    <li>Author: {{model.uid.name}}</li>
-</ul>
+<div class="expanded row">
+    <div class="small-12 medium-8 columns">
+        {{#form-for model as |m|}}
+            {{m.text-field "title"}}
+            {{#fields-for model.body as |body|}}
+                {{body.textarea-field "summary"}}
+                {{body.textarea-field "value"}}
+                {{body.select-field "format" "basic_html restricted_html full_html plain_text"}}
+            {{/fields-for}}
 
-{{#form-for model as |form|}}
-    {{#fields-for model.body as |body|}}
-        {{body.textarea-field "summary"}}
-        {{body.textarea-field "value"}}
-        {{body.select-field "format" "basic_html restricted_html full_html plain_text"}}
-    {{/fields-for}}
-
-    {{form.submit "Save"}}
-{{/form-for}}
+            {{m.submit "Save" class="button"}}
+        {{/form-for}}
+    </div>
+    <div class="small-12 medium-4 columns">
+        <ul>
+            <li><i>Author:</i> {{model.uid.name}}</li>
+            <li><i>Created</i>: {{model.createdDate}}</li>
+            <li><i>NID</i>: {{model.nid}}</li>
+            <li><i>UUID</i>: {{model.uuid}}</li>
+        </ul>
+    </div>
+</div>
