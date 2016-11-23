@@ -18,7 +18,7 @@
     </li>
     <li class="menu-item">
         {{#if session.isAuthenticated}}
-            <a {{action 'invalidateSession'}} href="#">Logout</a>
+            Logged in as {{currentUser.user.name}}: <a {{action 'invalidateSession'}} href="#">Logout</a>
         {{else}}
             {{#link-to 'login'}}Login{{/link-to}}
         {{/if}}
