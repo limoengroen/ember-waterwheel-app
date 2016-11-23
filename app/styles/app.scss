@@ -1,3 +1,15 @@
 @import "settings";
 @import 'foundation';
 @include foundation-everything;
+
+body {
+  margin: $global-margin * 2;
+}
+
+input, label {
+  margin: 0 $global-margin 0;
+}
+
+label {
+  font-style: italic;
+}
