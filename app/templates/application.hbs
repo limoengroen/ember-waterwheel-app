@@ -1,28 +1,33 @@
 <h1>Ember-CRUD PoC</h1>
 
 <ul class="menu">
-    <li class="menu-item">
+    <li>
         {{#link-to 'index'}}
             Home
         {{/link-to}}
     </li>
-    <li class="menu-item">
+    <li>
         {{#link-to 'articles'}}
             Articles
         {{/link-to}}
     </li>
-    <li class="menu-item">
+    <li>
         {{#link-to 'users'}}
             Users
         {{/link-to}}
     </li>
-    <li class="menu-item">
-        {{#if session.isAuthenticated}}
-            Logged in as {{currentUser.user.name}}: <a {{action 'invalidateSession'}} href="#">Logout</a>
-        {{else}}
+    {{#if session.isAuthenticated}}
+        <li>
+            <span>Logged in as {{currentUser.user.name}}</span>
+        </li>
+        <li>
+            <a {{action 'invalidateSession'}} href="#">Logout</a>
+        </li>
+    {{else}}
+        <li>
             {{#link-to 'login'}}Login{{/link-to}}
-        {{/if}}
-    </li>
+        </li>
+    {{/if}}
 </ul>
 
 {{outlet}}

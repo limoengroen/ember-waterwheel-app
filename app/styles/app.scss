@@ -16,3 +16,9 @@ input, label {
 label {
   font-style: italic;
 }
+
+.menu > li > span {
+  display: block;
+  padding: 0.7rem 1rem;
+  line-height: 1;
+}
