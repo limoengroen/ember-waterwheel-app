@@ -1,6 +1,6 @@
 <div class="expanded row">
     <div class="small-12 medium-8 columns">
-        {{#form-for model as |m|}}
+        {{#form-for model submit=(action 'save') as |m|}}
             {{m.text-field "title"}}
             {{#fields-for model.body as |body|}}
                 {{body.textarea-field "summary"}}
@@ -10,6 +10,8 @@
 
             {{m.submit "Save" class="button"}}
         {{/form-for}}
+
+        {{outlet}}
     </div>
     <div class="small-12 medium-4 columns">
         <ul>
