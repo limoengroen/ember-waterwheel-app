@@ -28,6 +28,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
             this._super(...arguments);
             const record = this.controller.get('model');
             record.rollbackAttributes();
+        },
+        closeModal() {
+            window.history.back();
         }
+
     }
 });
