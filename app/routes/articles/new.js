@@ -1,8 +1,11 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-    authorizer: 'authorizer:custom',
+    currentUser: service(),
+//    authorizer: 'authorizer:custom',
 
     model(params) {
         return this.store.createRecord('node--article', params);
@@ -16,6 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
                 format: 'plain_text'
             };
             record.set('body', body);
+            record.set('uid', this.get('currentUser').get('user'));
 
 //            console.log(record.get('body'));
 //            debugger;

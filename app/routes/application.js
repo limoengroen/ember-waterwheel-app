@@ -4,9 +4,9 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
-    sessionAccount: service('session-account'),
+    currentUser: service(),
 
-/*    beforeModel() {
+    beforeModel() {
         return this._loadCurrentUser();
     },
 
@@ -17,6 +17,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     _loadCurrentUser() {
 //        debugger;
-        return this.get('sessionAccount').loadCurrentUser();
-    }*/
+        return this.get('currentUser').load();
+    }
 });
