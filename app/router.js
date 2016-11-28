@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('article', { path: '/article/:uuid'});
   this.route('login');
   this.route('users');
+  this.route('user', { path: '/user/:uuid'});
 });
 
 export default Router;
