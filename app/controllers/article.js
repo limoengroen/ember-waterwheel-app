@@ -6,6 +6,14 @@ export default Ember.Controller.extend({
             record.save()
                 .then(() => this.transitionToRoute('articles'))
                 .catch((reason) => console.log("Save failed: " + reason));
+        },
+
+        cancel() {
+            window.history.back();
+        },
+
+        updateFormat(value) {
+            this.get('model').set('body.format', value);
         }
     }
 });
