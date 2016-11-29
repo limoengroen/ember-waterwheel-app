@@ -1,5 +1,7 @@
 <h2>All Users</h2>
 
+{{outlet}}
+
 {{#each model as |user|}}
     <h3>{{#link-to "user" user}}{{user.name}}{{/link-to}}</h3>
     <ul>
