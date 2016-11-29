@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     actions: {
-        save(record) {
-            record.save()
+        save(model) {
+            model.save()
                 .then(() => this.transitionToRoute('articles'))
                 .catch((reason) => console.log("Save failed: " + reason));
         },
@@ -12,8 +12,11 @@ export default Ember.Controller.extend({
             window.history.back();
         },
 
-        updateFormat(value) {
-            this.get('model').set('body.format', value);
+        delete(model) {
+            model.deleteRecord();
+            model.save()
+                .then(() => this.transitionToRoute('articles'))
+                .catch((reason) => console.log("Delete failed: " + reason));
         }
     }
 });

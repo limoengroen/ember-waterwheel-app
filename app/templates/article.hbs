@@ -8,16 +8,16 @@
             <label for="body__value">Body</label>
             {{textarea value=model.body.value name="body__value"}}<br/>
             <label for="body__format">Text format</label>
-            <select name="body__format" onchange={{action "updateFormat" value="target.value"}}>
-                <option value="basic_html">Basic HTML</option>
-                <option value="restricted_html">Restricted HTML</option>
-                <option value="full_html">Full HTML</option>
-                <option value="plain_text">Plain Text</option>
-            </select>
+            {{#x-select name="body__format" value=model.body.format as |xs|}}
+                {{#xs.option value="basic_html"}}Basic HTML{{/xs.option}}
+                {{#xs.option value="restricted_html"}}Restricted HTML{{/xs.option}}
+                {{#xs.option value="full_html"}}Full HTML{{/xs.option}}
+                {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
+            {{/x-select}}
 
             <button type="submit" class="button">Save</button>
             <button type="button" class="button hollow" {{action 'cancel'}}>Cancel</button>
-            <button type="button" class="button alert float-right" {{action 'delete'}}>Delete</button>
+            <button type="button" class="button alert float-right" {{action 'delete' model}}>Delete</button>
         </form>
     </div>
     <div class="small-12 medium-4 columns">
