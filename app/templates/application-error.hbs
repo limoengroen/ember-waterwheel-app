@@ -1,0 +1,8 @@
+<div class="callout alert">
+    {{#each model.errors as |error|}}
+        <h3>{{error.title}}</h3>
+        <p>{{error.detail}}</p>
+    {{/each}}
+</div>
+
+{{outlet}}
