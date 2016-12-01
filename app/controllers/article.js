@@ -5,7 +5,11 @@ export default Ember.Controller.extend({
         save(model) {
             model.save()
                 .then(() => this.transitionToRoute('articles'))
-                .catch((reason) => console.log("Save failed: " + reason));
+                .catch((adapterError) => {
+                    console.log("Save failed: " + adapterError);
+                    Ember.Logger.debug(adapterError);
+//                    model.set('_errors', adapterError.errors);
+                });
         },
 
         cancel() {

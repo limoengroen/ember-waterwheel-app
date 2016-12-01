@@ -3,17 +3,31 @@
         <form {{action 'save' model on="submit"}} class="clearfix">
             <label for="title">Title</label>
             {{input value=model.title name="title"}}
-            <label for="body__summary">Summary</label>
-            {{textarea value=model.body.summary name="body__summary" rows=3}}
-            <label for="body__value">Body</label>
-            {{textarea value=model.body.value name="body__value" rows=5}}
-            <label for="body__format">Text format</label>
-            {{#x-select name="body__format" value=model.body.format as |xs|}}
-                {{#xs.option value="basic_html"}}Basic HTML{{/xs.option}}
-                {{#xs.option value="restricted_html"}}Restricted HTML{{/xs.option}}
-                {{#xs.option value="full_html"}}Full HTML{{/xs.option}}
-                {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
-            {{/x-select}}
+            {{#each model.errors.title as |error|}}
+                <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+            {{/each}}
+
+            <fieldset class="fieldset">
+                <legend>Body</legend>
+                <label for="body__summary">Summary</label>
+                {{textarea value=model.body.summary name="body__summary" rows=3}}
+
+                <label for="body__value">Body</label>
+                {{textarea value=model.body.value name="body__value" rows=5}}
+
+                <label for="body__format">Text format</label>
+                {{#x-select name="body__format" value=model.body.format as |xs|}}
+                    {{#xs.option value="basic_html"}}Basic HTML{{/xs.option}}
+                    {{#xs.option value="restricted_html"}}Restricted HTML{{/xs.option}}
+                    {{#xs.option value="full_html"}}Full HTML{{/xs.option}}
+                    {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
+                    {{#xs.option value="blah"}}Blah!{{/xs.option}}
+                {{/x-select}}
+
+                {{#each model.errors.body as |error|}}
+                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+                {{/each}}
+            </fieldset>
 
             <button type="submit" class="button">Save</button>
             <button type="button" class="button hollow" {{action 'cancel'}}>Cancel</button>
@@ -30,11 +44,12 @@
     </div>
 </div>
 
-{{#each model.errors.title as |error|}}
-    <div class="error">{{error.message}}</div>
-{{/each}}
-{{#each model.errors.body as |error|}}
-    <div class="error">{{error.message}}</div>
+{{!--{{#each model.errors.messages as |message|}}
+    <div class="callout alert">{{message}}</div>
+{{/each}}--}}
+
+{{#each model.errors.base as |error|}}
+    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
 {{/each}}
 
 {{outlet}}
