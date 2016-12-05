@@ -4,6 +4,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     nid: DS.attr(),
     uuid: DS.attr(),
+    status: DS.attr('boolean'),
     created: DS.attr(),
     createdDate: Ember.computed('created', function() {
         let date = new Date(this.get('created') * 1000);
