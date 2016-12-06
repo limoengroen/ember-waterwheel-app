@@ -14,6 +14,8 @@ Router.map(function() {
   this.route('login');
   this.route('users');
   this.route('user', { path: '/user/:uuid'});
+  this.route('tags');
+  this.route('tag', { path: '/tag/:uuid'});
 });
 
 export default Router;

@@ -15,6 +15,11 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
             case 'user--user':
                 entityPath = 'user/user';
                 break;
+            case 'taxonomy-term--tags':
+                entityPath = 'taxonomy_term/tags';
+                break;
+            default:
+                throw "Unrecognized entity type: " + type;
         }
         return entityPath;
     },

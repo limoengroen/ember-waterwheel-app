@@ -11,10 +11,10 @@ export default DS.Model.extend({
         return date.toString();
     }),
     uid: DS.belongsTo('user--user'),
-//    author: DS.belongsTo('user--user'),
 /*    author: Ember.computed('uid', () => {
         let author = this.get('store').findRecord('user--user', this.get('uid'));
     }),*/
     title: DS.attr(),
-    body: DS.attr()
+    body: DS.attr(),
+    tags: DS.hasMany('taxonomy-term--tags')
 });
