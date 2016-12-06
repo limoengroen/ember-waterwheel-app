@@ -1,2 +1,12 @@
-
 {{outlet}}
+
+<h3>{{model.name}}</h3>
+<ul>
+    <li>TID: {{model.tid}}</li>
+    <li>UUID: {{model.uuid}}</li>
+    <li>Description: <p>{{model.description.value}}</p></li>
+</ul>
+
+{{#each model.articles as |article|}}
+    <h4>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h4>
+{{/each}}
