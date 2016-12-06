@@ -1,8 +1,8 @@
+{{outlet}}
+
 <h2>All Articles</h2>
 
 {{#link-to 'articles.new' class="button"}}New Article{{/link-to}}
-
-{{outlet}}
 
 {{#each model as |article|}}
     {{#if article.uuid}}
