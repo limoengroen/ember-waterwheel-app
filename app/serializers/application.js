@@ -1,6 +1,12 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
+    modelNameFromPayloadKey(key) {
+        // Only convert underscores to dashes
+        return key.replace(/_/g, '-');
+    },
+
     extractErrors(store, typeClass, payload, id) {
         payload = this._super(...arguments);
 
