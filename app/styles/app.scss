@@ -4,6 +4,7 @@
 
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+@import "ember-power-select";
 
 body {
   margin: $global-margin * 2;
