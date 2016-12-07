@@ -34,6 +34,18 @@
                 {{/each}}
             </fieldset>
 
+            <label>Tags</label>
+            {{#power-select-multiple
+                    options=tags
+                    selected=model.field_tags
+                    searchField="name"
+                    onchange=(action (mut model.field_tags))
+                    loadingMessage="Loading..."
+                    as |tag|
+            }}
+                {{tag.name}}
+            {{/power-select-multiple}}
+
             {{!--{{#each model.errors.messages as |message|}}
                 <div class="callout alert">{{message}}</div>
             {{/each}}--}}
