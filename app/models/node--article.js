@@ -16,5 +16,13 @@ export default DS.Model.extend({
     }),*/
     title: DS.attr(),
     body: DS.attr(),
-    tags: DS.hasMany('taxonomy-term--tags')
+    field_tags: DS.hasMany('taxonomy-term--tag'),
+
+/*    typeForRelationship(name, store) {
+        let relationship = get(this, 'relationshipsByName').get(name);
+        if (relationship.type == 'taxonomy-term-tag') {
+            relationship.type = 'taxonomy-term-tags';
+        }
+        return relationship && store.modelFor(relationship.type);
+    }*/
 });

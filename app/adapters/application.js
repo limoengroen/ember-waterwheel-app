@@ -15,7 +15,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
             case 'user--user':
                 entityPath = 'user/user';
                 break;
-            case 'taxonomy-term--tags':
+            case 'taxonomy-term--tag':
                 entityPath = 'taxonomy_term/tags';
                 break;
             default:

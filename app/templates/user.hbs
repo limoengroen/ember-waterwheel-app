@@ -5,8 +5,8 @@
     <li>UID: {{model.uid}}</li>
     <li>UUID: {{model.uuid}}</li>
     <li>E-mail: {{model.mail}}</li>
-
-    {{#each model.articles as |article|}}
-        <h4>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h4>
-    {{/each}}
 </ul>
+
+{{#each model.articles as |article|}}
+    <h4>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h4>
+{{/each}}
