@@ -11,6 +11,12 @@ export default DS.JSONAPISerializer.extend({
         return payloadType.replace(/_/g, '-');
     },*/
 
+    payloadKeyFromModelName(modelName) {
+        let payloadKey = this._super(modelName);
+        payloadKey = payloadKey.replace(/([^-])-([^-])/g, "$1_$2");
+        return payloadKey;
+    },
+
     keyForRelationship(key/*, typeClass, method*/) {
         return key;
     },
