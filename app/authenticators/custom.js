@@ -5,8 +5,6 @@ const { RSVP: { Promise }, isEmpty } = Ember;
 
 export default Base.extend({
   restore(data) {
-//    console.log("restore data:");
-//    console.log(JSON.parse(JSON.stringify(data)));
     return new Promise((resolve, reject) => {
       if (isEmpty(data.hash)) {
         reject();
@@ -20,7 +18,6 @@ export default Base.extend({
   authenticate(username, password) {
     return new Promise((resolve, reject) => {
       let data = {
-//        uid: 52,
         uuid: 'db124db7-855a-4e4a-a0ff-1b220665ec48', // @todo - actually perform login on Drupal site
         username: username,
         hash: btoa(`${username}:${password}`)

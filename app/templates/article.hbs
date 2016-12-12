@@ -46,10 +46,6 @@
                 {{tag.name}}
             {{/power-select-multiple}}
 
-            {{!--{{#each model.errors.messages as |message|}}
-                <div class="callout alert">{{message}}</div>
-            {{/each}}--}}
-
             {{#each model.errors.base as |error|}}
                 <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
             {{/each}}

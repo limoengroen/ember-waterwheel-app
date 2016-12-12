@@ -8,7 +8,6 @@ export default Ember.Controller.extend({
                 .catch((adapterError) => {
                     console.log("Save failed: " + adapterError);
                     Ember.Logger.debug(adapterError);
-//                    model.set('_errors', adapterError.errors);
                 });
         },
 

@@ -18,11 +18,4 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     _loadCurrentUser() {
         return this.get('currentUser').load();
     },
-
-/*    actions: {
-        error(error, transition) {
-            Ember.Logger.debug(error);
-            return true;
-        }
-    }*/
 });
