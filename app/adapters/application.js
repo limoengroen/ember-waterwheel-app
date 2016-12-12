@@ -1,8 +1,9 @@
 import DS from 'ember-data';
+import ENV from 'ember-crud/config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
-    host: 'http://ember-crud.dd:8080',
+    host: ENV.APP.host,
     namespace: 'api',
     authorizer: 'authorizer:custom',
 
