@@ -9,7 +9,7 @@ export default Ember.Route.extend({
         controller.set('model', model);
 
         this.store.findAll('taxonomy-term--tag').then(tags => {
-            controller.set('tags', tags)
+            controller.set('tags', tags);
         });
     }
 });
