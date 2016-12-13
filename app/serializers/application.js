@@ -3,7 +3,8 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     payloadKeyFromModelName(modelName) {
-        let payloadKey = this._super(modelName);
+        let payloadKey = modelName;
+//        let payloadKey = this._super(modelName);
         payloadKey = payloadKey.replace(/([^-])-([^-])/g, "$1_$2");
         return payloadKey;
     },
@@ -18,11 +19,7 @@ export default DS.JSONAPISerializer.extend({
         let out = {};
         for (let key in payload) {
             if (payload.hasOwnProperty(key)) {
-                // TODO: Convert newlines to <br/>'s ?
                 let error = payload[key];
-/*                for (let i = 0; i < error.length; i++) {
-                    error[i] = error[i].replace('\n', '<br/>');
-                }*/
 
                 // Truncate keys to first element before '/'
                 key = key.split('/', 1);
@@ -32,5 +29,14 @@ export default DS.JSONAPISerializer.extend({
 
         Ember.Logger.debug(out);
         return out;
+    },
+
+    serializeHasMany(snapshot, json, relationship) {
+        let hasMany = snapshot.hasMany(relationship.key);
+        if (hasMany !== undefined) {
+            if (hasMany.length) {
+                this._super(...arguments);
+            }
+        }
     }
 });
