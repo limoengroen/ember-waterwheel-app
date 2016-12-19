@@ -6,16 +6,16 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  this.route('articles', function() {
+Router.map(function () {
+  this.route('articles', function () {
     this.route('new');
   });
-  this.route('article', { path: '/article/:uuid'});
+  this.route('article', {path: '/article/:uuid'});
   this.route('login');
   this.route('users');
-  this.route('user', { path: '/user/:uuid'});
+  this.route('user', {path: '/user/:uuid'});
   this.route('tags');
-  this.route('tag', { path: '/tag/:uuid'});
+  this.route('tag', {path: '/tag/:uuid'});
 });
 
 export default Router;

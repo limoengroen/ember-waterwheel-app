@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 
-const { RSVP: { Promise }, isEmpty } = Ember;
+const {RSVP: {Promise}, isEmpty} = Ember;
 
 export default Base.extend({
   restore(data) {

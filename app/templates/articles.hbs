@@ -10,7 +10,8 @@
         <ul>
             <li>Author: {{article.uid.name}}</li>
             <li>Created: {{article.createdDate}}</li>
-            <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}} &nbsp;{{/each}}
+            <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
+                &nbsp;{{/each}}
             </li>
             <li>UUID: {{article.uuid}}</li>
         </ul>

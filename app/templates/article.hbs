@@ -25,9 +25,9 @@
                     {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
                     {{#xs.option value="blah"}}Blah!{{/xs.option}}
                 {{/x-select}}
-{{!--                {{#each model.errors.body.[0].format as |error|}}
-                                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-                                {{/each}} --}}
+                {{!--                {{#each model.errors.body.[0].format as |error|}}
+                                                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+                                                {{/each}} --}}
 
                 {{#each model.errors.body as |error|}}
                     <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
@@ -41,7 +41,7 @@
                     searchField="name"
                     onchange=(action (mut model.field_tags))
                     loadingMessage="Loading..."
-                    as |tag|
+            as |tag|
             }}
                 {{tag.name}}
             {{/power-select-multiple}}
