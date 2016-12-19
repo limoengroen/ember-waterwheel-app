@@ -11,17 +11,13 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   pathForType(type) {
     let entityPath;
     switch (type) {
-      case 'node--article':
-        entityPath = 'node/article';
-        break;
-      case 'user--user':
-        entityPath = 'user/user';
-        break;
       case 'taxonomy-term--tag':
         entityPath = 'taxonomy_term/tags';
         break;
       default:
-        throw "Unrecognized entity type: " + type;
+        // Replace '--' => '/' and '-' => '_'
+        entityPath = type.replace(/--/g, '/');
+        entityPath = entityPath.replace(/-/g, '_');
     }
     return entityPath;
   },
