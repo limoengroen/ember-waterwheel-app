@@ -10,8 +10,8 @@ export default DS.Model.extend({
     let date = new Date(this.get('created') * 1000);
     return date.toString();
   }),
-  uid: DS.belongsTo('user--user'),
+  uid: DS.belongsTo('user--user', {async: true}),
   title: DS.attr(),
   body: DS.attr(),
-  field_tags: DS.hasMany('taxonomy-term--tag'),
+  field_tags: DS.hasMany('taxonomy-term--tag', {async: true}),
 });

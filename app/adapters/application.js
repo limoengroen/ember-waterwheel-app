@@ -6,7 +6,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.APP.host,
   namespace: 'api',
   authorizer: 'authorizer:custom',
-
+  coalesceFindRequests: true,
 
   pathForType(type) {
     let entityPath;
