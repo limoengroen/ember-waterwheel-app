@@ -6,14 +6,16 @@
 
 {{#each model as |article|}}
     {{#if article.uuid}}
-        <h3>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h3>
-        <ul>
-            <li>Author: {{article.uid.name}}</li>
-            <li>Created: {{article.createdDate}}</li>
-            <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
-                &nbsp;{{/each}}
-            </li>
-            <li>UUID: {{article.uuid}}</li>
-        </ul>
+        <div class="{{unless article.status 'unpublished'}}">
+            <h3>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h3>
+            <ul>
+                <li>Author: {{article.uid.name}}</li>
+                <li>Created: {{article.createdDate}}</li>
+                <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
+                    &nbsp;{{/each}}
+                </li>
+                <li>UUID: {{article.uuid}}</li>
+            </ul>
+        </div>
     {{/if}}
 {{/each}}

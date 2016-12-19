@@ -1,6 +1,6 @@
 {{outlet}}
 
-<form {{action 'save' model on="submit"}} class="clearfix">
+<form {{action 'save' model on="submit"}} class="clearfix {{unless model.status 'unpublished'}}">
     <div class="expanded row">
         <div class="small-12 medium-8 columns">
             <label for="title">Title</label>
