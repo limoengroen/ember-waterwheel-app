@@ -11,12 +11,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController(controller, model) {
-    controller.set('model', model);
+    this._super(...arguments);
 
     // Side-load all tags so we can autocomplete based on them
-    this.store.findAll('taxonomy-term--tag').then(tags => {
-      controller.set('tags', tags);
-    });
+    controller.set('tags', this.store.findAll('taxonomy-term--tag'));
   },
 
   actions: {
