@@ -12,7 +12,7 @@ $ember-power-select-multiple-option-border-radius: 4px;
 @import "ember-power-select";
 
 body {
-  margin: $global-margin * 2;
+  margin: ($global-margin * 2);
 }
 
 input, label {
@@ -40,4 +40,8 @@ label {
 
 .unpublished {
   background-color: #fed;
+}
+
+.create-form {
+  margin: 0 ($global-margin * 2) ($global-margin * 2);
 }
