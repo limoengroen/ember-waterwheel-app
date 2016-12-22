@@ -10,6 +10,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.store.createRecord('node--article', params);
   },
 
+  setupController(controller, model) {
+    controller.set('model', model);
+
+    // Side-load all tags so we can autocomplete based on them
+    this.store.findAll('taxonomy-term--tag').then(tags => {
+      controller.set('tags', tags);
+    });
+  },
+
   actions: {
     save(record) {
       let body = {

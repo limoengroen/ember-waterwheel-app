@@ -1,6 +1,6 @@
-{{#modal-dialog translucentOverlay=true close='closeModal'}}
+{{!{{#modal-dialog translucentOverlay=true close='closeModal'}}
     <h2>Create a new Article</h2>
-    <form {{action 'save' model on="submit"}}>
+{{!--    <form {{action 'save' model on="submit"}}>
         <label for="title">Title</label>
         {{input value=model.title name="title"}}<br/>
         <label for="body__summary">Summary</label>
@@ -9,7 +9,61 @@
         {{textarea value=model.body__value name="body__value"}}<br/>
         <button type="submit" class="button">Create</button>
         <button type="button" class="button" {{action 'closeModal'}}>Cancel</button>
+    </form> --}}
+
+    <form {{action 'save' model on="submit"}} class="create-form">
+        <label for="title">Title</label>
+        {{input value=model.title name="title"}}
+        {{#each model.errors.title as |error|}}
+            <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+        {{/each}}
+
+        <fieldset class="fieldset">
+            <legend>Body</legend>
+            <label for="body__summary">Summary</label>
+            {{textarea value=model.body.summary name="body__summary" rows=3}}
+
+            <label for="body__value">Body</label>
+            {{textarea value=model.body.value name="body__value" rows=5}}
+
+            <label for="body__format">Text format</label>
+            {{#x-select name="body__format" value=model.body.format as |xs|}}
+                {{#xs.option value="basic_html"}}Basic HTML{{/xs.option}}
+                {{#xs.option value="restricted_html"}}Restricted HTML{{/xs.option}}
+                {{#xs.option value="full_html"}}Full HTML{{/xs.option}}
+                {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
+                {{#xs.option value="blah"}}Blah!{{/xs.option}}
+            {{/x-select}}
+
+            {{#each model.errors.body as |error|}}
+                <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+            {{/each}}
+        </fieldset>
+
+        <label>Tags</label>
+        {{#power-select-multiple
+                options=tags
+                selected=model.field_tags
+                searchField="name"
+                onchange=(action (mut model.field_tags))
+                loadingMessage="Loading..."
+        as |tag|
+        }}
+            {{tag.name}}
+        {{/power-select-multiple}}
+
+        <label>
+            {{input checked=model.status type="checkbox" name="status"}}
+            Published
+        </label>
+
+        {{#each model.errors.base as |error|}}
+            <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+        {{/each}}
+
+        <button type="submit" class="button">Create</button>
+        <button type="button" class="button hollow" {{action 'closeModal'}}>Cancel</button>
     </form>
-{{/modal-dialog}}
+    {{! {{/modal-dialog}}
 
 {{outlet}}
