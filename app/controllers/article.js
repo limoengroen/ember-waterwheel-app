@@ -12,12 +12,16 @@ export default Ember.Controller.extend({
     },
 
     cancel() {
+      const record = this.get('model');
+      record.rollbackAttributes();
+
       window.history.back();
     },
 
-    delete(model) {
-      model.deleteRecord();
-      model.save()
+    delete() {
+      const record = this.get('model');
+      record.deleteRecord();
+      record.save()
         .then(() => this.transitionToRoute('articles'))
         .catch((reason) => console.log("Delete failed: " + reason));
     }

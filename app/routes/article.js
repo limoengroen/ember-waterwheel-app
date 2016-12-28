@@ -16,5 +16,13 @@ export default Ember.Route.extend({
       {value: 'plain_text', label: 'Plain Text'},
       {value: 'invalid!', label: 'Invalid!'}
     ]);
+  },
+
+  actions: {
+    willTransition() {
+      this._super(...arguments);
+      const record = this.controller.get('model');
+      record.rollbackAttributes();
+    }
   }
 });
