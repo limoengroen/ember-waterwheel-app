@@ -4,7 +4,6 @@ import DS from 'ember-data';
 export default DS.JSONAPISerializer.extend({
   payloadKeyFromModelName(modelName) {
     let payloadKey = modelName;
-//        let payloadKey = this._super(modelName);
     payloadKey = payloadKey.replace(/([^-])-([^-])/g, "$1_$2");
     return payloadKey;
   },
@@ -19,11 +18,17 @@ export default DS.JSONAPISerializer.extend({
     let out = {};
     for (let key in payload) {
       if (payload.hasOwnProperty(key)) {
-        let error = payload[key];
+        let error = payload[key].toString();
 
-        // Truncate keys to first element before '/'
-        key = key.split('/', 1);
-        out[key[0]] = error;
+        // Remove the field path from the error message
+/*        let splitPos = error.indexOf(':');
+        if (splitPos > 0) {
+          error = error.substring(splitPos + 2);
+        }*/
+
+        // Convert '/' in key (ex. 'body/format') to '__'
+        key = key.replace('/', '__');
+        out[key] = error;
       }
     }
 

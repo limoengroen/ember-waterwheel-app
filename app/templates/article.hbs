@@ -13,9 +13,15 @@
                 <legend>Body</legend>
                 <label for="body__summary">Summary</label>
                 {{textarea value=model.body.summary name="body__summary" rows=3}}
+                {{#each model.errors.body__summary as |error|}}
+                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+                {{/each}}
 
                 <label for="body__value">Body</label>
                 {{textarea value=model.body.value name="body__value" rows=5}}
+                {{#each model.errors.body__value as |error|}}
+                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
+                {{/each}}
 
                 <label for="body__format">Text format</label>
                 <select name="body__format" onchange={{action (mut model.body.format) value="target.value"}}>
@@ -23,11 +29,7 @@
                         <option value="{{option.value}}" selected={{eq model.body.format option.value}}>{{option.label}}</option>
                     {{/each}}
                 </select>
-                {{!--                {{#each model.errors.body.[0].format as |error|}}
-                                                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-                                                {{/each}} --}}
-
-                {{#each model.errors.body as |error|}}
+                {{#each model.errors.body__format as |error|}}
                     <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
                 {{/each}}
             </fieldset>
