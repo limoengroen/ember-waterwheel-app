@@ -18,13 +18,11 @@
                 {{textarea value=model.body.value name="body__value" rows=5}}
 
                 <label for="body__format">Text format</label>
-                {{#x-select name="body__format" value=model.body.format as |xs|}}
-                    {{#xs.option value="basic_html"}}Basic HTML{{/xs.option}}
-                    {{#xs.option value="restricted_html"}}Restricted HTML{{/xs.option}}
-                    {{#xs.option value="full_html"}}Full HTML{{/xs.option}}
-                    {{#xs.option value="plain_text"}}Plain Text{{/xs.option}}
-                    {{#xs.option value="blah"}}Blah!{{/xs.option}}
-                {{/x-select}}
+                <select name="body__format" onchange={{action (mut model.body.format) value="target.value"}}>
+                    {{#each text_formats key="value" as |option|}}
+                        <option value="{{option.value}}" selected={{eq model.body.format option.value}}>{{option.label}}</option>
+                    {{/each}}
+                </select>
                 {{!--                {{#each model.errors.body.[0].format as |error|}}
                                                     <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
                                                 {{/each}} --}}
