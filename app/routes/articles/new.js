@@ -7,7 +7,19 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
 
   model(params) {
-    return this.store.createRecord('node--article', params);
+    let record = this.store.createRecord('node--article', params);
+
+    // Initialize field defaults
+    record.set('body', {
+      summary: '',
+      value: '',
+      format: 'basic_html'
+    });
+
+    record.set('status', 1);
+    record.set('uid', this.get('currentUser').get('user'));
+
+    return record;
   },
 
   setupController(controller, model) {
@@ -19,14 +31,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     save(record) {
-      let body = {
-        value: record.get('body__value'),
-        summary: record.get('body__summary'),
-        format: 'plain_text'
-      };
-      record.set('body', body);
-      record.set('uid', this.get('currentUser').get('user'));
-
       record.save()
         .then(() => this.transitionTo('articles'))
         .catch((reason) => console.log("Save failed: " + reason));
