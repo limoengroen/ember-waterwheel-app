@@ -39,7 +39,7 @@ export default Ember.Route.extend({
 
     delete() {
       this.controller.get('model').destroyRecord()
-        .then(() => this.transitionToRoute('articles'))
+        .then(() => this.transitionTo('articles'))
         .catch((reason) => console.log("Delete failed: " + reason));
     }
 
