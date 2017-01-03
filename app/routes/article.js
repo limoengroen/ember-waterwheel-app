@@ -38,8 +38,12 @@ export default Ember.Route.extend({
     },
 
     delete() {
-      this.controller.get('model').destroyRecord()
-        .then(() => this.transitionTo('articles'))
+      let record = this.controller.get('model');
+      record.destroyRecord()
+        .then(() => {
+          record.unloadRecord(); // @todo - This method is marked @private, but is necessary to remove record from the articles listing
+          this.transitionTo('articles');
+        })
         .catch((reason) => console.log("Delete failed: " + reason));
     }
 
