@@ -1,5 +1,12 @@
 {{outlet}}
 
+{{#each model.errors as |error|}}
+    <div class="callout alert">
+        <h3>{{error.title}}</h3>
+        <p>{{error.detail}}</p>
+    </div>
+{{/each}}
+
 <form {{action 'save' model on="submit"}} class="clearfix {{unless model.status 'unpublished'}}">
     <div class="expanded row">
         <div class="small-12 medium-8 columns">
