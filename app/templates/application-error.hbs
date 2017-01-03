@@ -1,8 +1,10 @@
-<div class="callout alert">
-    {{#each model.errors as |error|}}
+{{#top-nav}}{{/top-nav}}
+
+{{#each model.errors as |error|}}
+    <div class="callout alert">
         <h3>{{error.title}}</h3>
         <p>{{error.detail}}</p>
-    {{/each}}
-</div>
+    </div>
+{{/each}}
 
 {{outlet}}
