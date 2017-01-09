@@ -19,18 +19,19 @@ export default Ember.Route.extend({
   },
 
   actions: {
+    willTransition() {
+      this._super(...arguments);
+      this.controller.get('model').rollbackAttributes();
+    },
+
     save(model) {
-      model.save()
+      let record = this.controller.get('model');
+      record.save()
         .then(() => this.transitionTo('articles'))
         .catch((adapterError) => {
           console.log("Save failed: " + adapterError);
           Ember.Logger.debug(adapterError);
         });
-    },
-
-    willTransition() {
-      this._super(...arguments);
-      this.controller.get('model').rollbackAttributes();
     },
 
     cancel() {
@@ -46,6 +47,5 @@ export default Ember.Route.extend({
         })
         .catch((reason) => console.log("Delete failed: " + reason));
     }
-
   }
 });
