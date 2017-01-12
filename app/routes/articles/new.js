@@ -27,22 +27,33 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     // Side-load all tags so we can autocomplete based on them
     controller.set('tags', this.store.findAll('taxonomy-term--tag'));
+
+    controller.set('text_formats', [
+      {value: 'basic_html', label: 'Basic HTML'},
+      {value: 'plain_text', label: 'Plain Text'},
+      {value: 'invalid!', label: 'Invalid!'}
+    ]);
   },
 
   actions: {
-    save(record) {
-      record.save()
-        .then(() => this.transitionTo('articles'))
-        .catch((reason) => console.log("Save failed: " + reason));
-    },
     willTransition() {
       this._super(...arguments);
       const record = this.controller.get('model');
       record.rollbackAttributes();
     },
-    closeModal() {
+
+    save() {
+      let record = this.controller.get('model');
+      record.save()
+        .then(() => this.transitionTo('articles'))
+        .catch((adapterError) => {
+          console.log("Save failed: " + adapterError);
+          Ember.Logger.debug(adapterError);
+        });
+    },
+
+    cancel() {
       window.history.back();
     }
-
   }
 });

@@ -24,7 +24,7 @@ export default Ember.Route.extend({
       this.controller.get('model').rollbackAttributes();
     },
 
-    save(model) {
+    save() {
       let record = this.controller.get('model');
       record.save()
         .then(() => this.transitionTo('articles'))
