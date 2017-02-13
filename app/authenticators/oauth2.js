@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
-const { RSVP, makeArray, isEmpty, run, assign } = Ember;
+const { RSVP, makeArray, isEmpty, run, assign, testing, warn } = Ember;
 
 export default OAuth2PasswordGrant.extend({
   serverTokenEndpoint: "http://ember-crud.dd:8080/oauth/token",
