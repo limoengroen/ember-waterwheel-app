@@ -8,8 +8,13 @@ export default Ember.Controller.extend({
   actions: {
     authenticate() {
       let {username, password} = this.getProperties('username', 'password');
-      this.get('session').authenticate('authenticator:custom', username, password).catch((reason) => {
-        this.set('errorMessage', reason.error || reason);
+      this.get('session').authenticate('authenticator:oauth2', username, password).catch((reason) => {
+        if (reason === undefined) {
+          this.set('errorMessage', 'authenticate failed for unknown reasons.');
+        }
+        else {
+          this.set('errorMessage', reason.error || reason);
+        }
       });
     }
   }
