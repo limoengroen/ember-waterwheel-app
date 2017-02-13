@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
-const { RSVP, makeArray, isEmpty, run } = Ember;
+const { RSVP, makeArray, isEmpty, run, assign } = Ember;
 
 export default OAuth2PasswordGrant.extend({
   serverTokenEndpoint: "http://ember-crud.dd:8080/oauth/token",
@@ -37,5 +37,54 @@ export default OAuth2PasswordGrant.extend({
         run(null, reject, useResponse ? response : response.responseJSON);
       });
     });
-  }
+  },
+
+  _scheduleAccessTokenRefresh(expiresIn, expiresAt, refreshToken) {
+    const refreshAccessTokens = this.get('refreshAccessTokens');
+    if (refreshAccessTokens) {
+      const now = (new Date()).getTime();
+      if (isEmpty(expiresAt) && !isEmpty(expiresIn)) {
+        expiresAt = new Date(now + expiresIn * 1000).getTime();
+      }
+      const offset = this.get('tokenRefreshOffset');
+      if (!isEmpty(refreshToken) && !isEmpty(expiresAt) && expiresAt > now - offset) {
+        run.cancel(this._refreshTokenTimeout);
+        delete this._refreshTokenTimeout;
+        if (!testing) {
+          this._refreshTokenTimeout = run.later(this, this._refreshAccessToken, expiresIn, refreshToken, expiresAt - now - offset);
+        }
+      }
+    }
+  },
+
+  _refreshAccessToken(expiresIn, refreshToken) {
+    const data = { 'grant_type': 'refresh_token', 'refresh_token': refreshToken };
+    const serverTokenEndpoint = this.get('serverTokenEndpoint');
+    return new RSVP.Promise((resolve, reject) => {
+      this.makeRequest(serverTokenEndpoint, data).then((response) => {
+        run(() => {
+          expiresIn = response['expires_in'] || expiresIn;
+          refreshToken = response['refresh_token'] || refreshToken;
+          const expiresAt = this._absolutizeExpirationTime(expiresIn);
+          const data = assign(response, { 'expires_in': expiresIn, 'expires_at': expiresAt, 'refresh_token': refreshToken });
+          this._scheduleAccessTokenRefresh(expiresIn, null, refreshToken);
+          this.trigger('sessionDataUpdated', data);
+          resolve(data);
+        });
+      }, (response) => {
+        warn(`Access token could not be refreshed - server responded with ${response.responseJSON}.`);
+        reject();
+      });
+    });
+  },
+
+  _absolutizeExpirationTime(expiresIn) {
+    if (!isEmpty(expiresIn)) {
+      return new Date((new Date().getTime()) + expiresIn * 1000).getTime();
+    }
+  },
+
+  _validate(data) {
+    return !isEmpty(data['access_token']);
+  },
 });
