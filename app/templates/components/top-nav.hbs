@@ -23,7 +23,7 @@
     </li>
     {{#if session.isAuthenticated}}
         <li>
-            <span>Logged in as {{currentUser.user.name}}</span>
+            <span>Logged in as {{session.data.authenticated.username}}</span>
         </li>
         <li>
             <a {{action 'invalidateSession'}} href="#">Logout</a>
