@@ -1,18 +1,21 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
 const { RSVP, makeArray, isEmpty, run, assign, testing, warn } = Ember;
 
 export default OAuth2PasswordGrant.extend({
-  serverTokenEndpoint: "http://ember-crud.dd:8080/oauth/token",
-  client_id: "2290e7d0-ddef-44ca-ab22-72dfa9b686f5",
-  client_secret: "%n&pjgs!VR3HAZw4",
+  serverTokenEndpoint: ENV.APP.host + ENV.APP.oauth2TokenEndpoint,
 
   authenticate(username, password, scope = [], headers = {}) {
     return new RSVP.Promise((resolve, reject) => {
-      const client_id = this.get("client_id");
-      const client_secret = this.get("client_secret");
-      const data = { 'grant_type': 'password', username, password, client_id, client_secret };
+      const data = {
+        grant_type: 'password',
+        client_id: ENV.APP.oauth2ClientId,
+        client_secret: ENV.APP.oauth2ClientSecret,
+        username,
+        password
+      };
       const serverTokenEndpoint = this.get('serverTokenEndpoint');
       const useResponse = this.get('rejectWithResponse');
       const scopesString = makeArray(scope).join(' ');

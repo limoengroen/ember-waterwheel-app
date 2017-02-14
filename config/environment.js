@@ -20,7 +20,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      host: 'http://ember-crud.dd:8080'
+      host: 'http://ember-crud.dd:8080',
+      oauth2TokenEndpoint: '/oauth/token',
+      oauth2ClientId: "2290e7d0-ddef-44ca-ab22-72dfa9b686f5",
+      oauth2ClientSecret: "%n&pjgs!VR3HAZw4"
     }
   };
 
