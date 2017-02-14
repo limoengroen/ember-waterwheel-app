@@ -6,6 +6,8 @@
     <button type="submit" class="button">Login</button>
 
     {{#if errorMessage}}
-        <p>{{errorMessage}}</p>
+        <div class="callout alert">
+            <p>Error: {{errorMessage}}</p>
+        </div>
     {{/if}}
 </form>
