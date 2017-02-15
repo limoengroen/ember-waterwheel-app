@@ -29,6 +29,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     // Side-load all tags so we can autocomplete based on them
     controller.set('tags', this.store.findAll('taxonomy-term--tag'));
 
+    // @todo - un-hardcode these
     controller.set('text_formats', [
       {value: 'basic_html', label: 'Basic HTML'},
       {value: 'plain_text', label: 'Plain Text'},
