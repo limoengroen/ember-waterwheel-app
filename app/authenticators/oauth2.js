@@ -2,12 +2,13 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
 
-const { RSVP, makeArray, isEmpty, run, assign, testing, warn } = Ember;
+//const { RSVP, makeArray, isEmpty, run, assign, testing, warn } = Ember;
 
 export default OAuth2PasswordGrant.extend({
   serverTokenEndpoint: ENV.APP.host + ENV.APP.oauth2TokenEndpoint,
+  clientId: ENV.APP.oauth2ClientId,
 
-  authenticate(username, password, scope = [], headers = {}) {
+/*  authenticate(username, password, scope = [], headers = {}) {
     return new RSVP.Promise((resolve, reject) => {
       const data = {
         grant_type: 'password',
@@ -89,5 +90,5 @@ export default OAuth2PasswordGrant.extend({
 
   _validate(data) {
     return !isEmpty(data['access_token']);
-  },
+  },*/
 });

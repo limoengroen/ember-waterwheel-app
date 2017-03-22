@@ -23,7 +23,7 @@ module.exports = function(environment) {
       host: 'http://ember-crud.dd:8080',
       oauth2TokenEndpoint: '/oauth/token',
       oauth2ClientId: '28c28cee-a8b5-44b8-8b72-fe8a635f5c32',  // @todo - Fill in your client UUID
-      oauth2ClientSecret: ''
+//      oauth2ClientSecret: ''
     }
   };
 

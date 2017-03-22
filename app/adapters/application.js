@@ -22,7 +22,28 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return entityPath;
   },
 
-  buildURL(/*modelName, id, snapshot, requestType, query*/) {
-    return this._super(...arguments) + '?_format=api_json' /*+ '&XDEBUG_SESSION_START=PHPSTORM'*/;
-  }
+/*  urlForQueryRecord(query, modelName) {
+    let baseUrl = this.buildURL();
+    debugger;
+  }*/
+
+  /* Adapted from ember-data-drupal */
+  query(store, type, query) {
+    let drupalQuery = { filter: {} },
+      queryFields = Object.keys(query);
+
+    queryFields.forEach((field) => {
+      drupalQuery.filter[field] = drupalQuery.filter[field] || {};
+      drupalQuery.filter[field]['value'] = query[field];
+    });
+
+    let url = this.buildURL(type.modelName, null, null, 'query', drupalQuery);
+
+    if (this.sortQueryParams) {
+      query = this.sortQueryParams(drupalQuery);
+    }
+
+    return this.ajax(url, 'GET', { data: query });
+  },
+
 });
