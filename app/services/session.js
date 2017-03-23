@@ -6,7 +6,7 @@ const { inject: {service}, RSVP } = Ember;
 export default SessionService.extend({
   store: service(),
 
-  actions: {
+/*  actions: {
     authenticationSucceeded() {
       debugger;
       let store = this.get('store');
@@ -16,5 +16,5 @@ export default SessionService.extend({
           this.set('session.data.current-user', users[1]);
         });
     }
-  }
+  }*/
 });

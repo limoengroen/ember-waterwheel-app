@@ -8,13 +8,16 @@ export default Ember.Service.extend({
 
   load() {
     return new RSVP.Promise((resolve, reject) => {
-      // @todo - fix me
-      let uuid = this.get('session.data.authenticated.uuid');
-      if (!isEmpty(uuid)) {
-        this.get('store').find('user--user', uuid).then((user) => {
-          this.set('user', user);
-          resolve();
-        }, reject);
+      let data = this.get('session.data');
+      let username = this.get('session.data.authenticated.username');
+      debugger;
+      if (!isEmpty(username)) {
+        this.get('store').query('user--user', {name: username})
+          .then(users => {
+            debugger;
+            this.set('session.data.current-user', users[1]);
+            resolve();
+          }, reject);
       }
       else {
         resolve();
