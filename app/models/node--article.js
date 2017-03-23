@@ -7,8 +7,14 @@ export default DS.Model.extend({
   status: DS.attr('boolean'),
   created: DS.attr(),
   createdDate: Ember.computed('created', function () {
-    let date = new Date(this.get('created') * 1000);
-    return date.toString();
+    let created = this.get('created');
+    if (created) {
+      let date = new Date(created * 1000);
+      return date.toString();
+    }
+    else {
+      return "[No Date]"
+    }
   }),
   uid: DS.belongsTo('user--user', {async: true}),
   title: DS.attr(),

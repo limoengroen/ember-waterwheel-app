@@ -22,11 +22,6 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return entityPath;
   },
 
-/*  urlForQueryRecord(query, modelName) {
-    let baseUrl = this.buildURL();
-    debugger;
-  }*/
-
   /* Adapted from ember-data-drupal */
   query(store, type, query) {
     let drupalQuery = { filter: {} },

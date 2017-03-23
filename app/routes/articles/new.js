@@ -17,7 +17,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
 
     record.set('status', 1);
-    // @todo - fixme
     record.set('uid', this.get('currentUser').get('user'));
 
     return record;
