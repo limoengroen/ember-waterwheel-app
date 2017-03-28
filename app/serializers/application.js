@@ -8,11 +8,11 @@ export default DS.JSONAPISerializer.extend({
     return payloadKey;
   },
 
-  keyForRelationship(key/*, typeClass, method*/) {
+  keyForRelationship(key /*, typeClass, method*/) {
     return key;
   },
 
-  extractErrors(store, typeClass, payload, id) {
+  extractErrors(store, typeClass, payload /*, id*/) {
     payload = this._super(...arguments);
 
     let out = {};

@@ -13,7 +13,7 @@ export default DS.Model.extend({
       return date.toString();
     }
     else {
-      return "[No Date]"
+      return "[No Date]";
     }
   }),
   uid: DS.belongsTo('user--user', {async: true}),

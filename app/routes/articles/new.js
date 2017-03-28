@@ -22,7 +22,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return record;
   },
 
-  setupController(controller, model) {
+  setupController(controller /*, model*/) {
     this._super(...arguments);
 
     // Side-load all tags so we can autocomplete based on them
