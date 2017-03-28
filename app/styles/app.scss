@@ -1,14 +1,10 @@
-@import "settings";
-@import 'foundation';
-
-@include foundation-everything;
 
 $ember-power-select-default-border-radius: 0;
 $ember-power-select-multiple-option-border-radius: 4px;
 
 @import "ember-power-select";
 
-body {
+/*body {
   margin: ($global-margin * 2);
 }
 
@@ -41,4 +37,4 @@ label {
 
 .create-form {
   margin: 0 ($global-margin * 2) ($global-margin * 2);
-}
+}*/
