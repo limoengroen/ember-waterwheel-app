@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'ember-crud',
     environment: environment,
     rootURL: '/',
@@ -20,10 +20,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      host: 'http://ember-crud.dd:8080',
+      host: 'http://ember-crud.dd:8080',                      // @todo - Fill in your Drupal backend URL
       oauth2TokenEndpoint: '/oauth/token',
-      oauth2ClientId: '28c28cee-a8b5-44b8-8b72-fe8a635f5c32',  // @todo - Fill in your client UUID
-//      oauth2ClientSecret: ''
+      oauth2ClientId: '28c28cee-a8b5-44b8-8b72-fe8a635f5c32', // @todo - Fill in your client UUID
     }
   };
 
