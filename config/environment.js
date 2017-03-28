@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'ember-crud',
+    modulePrefix: 'ember-drupal-waterwheel-app',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
