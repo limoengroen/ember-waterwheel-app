@@ -1,6 +1,6 @@
 {
   "name": "ember-drupal-waterwheel-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A sample app for demonstrating the integration of Ember and Drupal using JSON API",
   "private": false,
   "directories": {
