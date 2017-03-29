@@ -22,7 +22,11 @@ module.exports = function(environment) {
       // when it is created
       host: 'http://ember-crud.dd:8080',                      // @todo - Fill in your Drupal backend URL
       oauth2TokenEndpoint: '/oauth/token',
-      oauth2ClientId: '28c28cee-a8b5-44b8-8b72-fe8a635f5c32', // @todo - Fill in your client UUID
+      oauth2ClientId: '28c28cee-a8b5-44b8-8b72-fe8a635f5c32'  // @todo - Fill in your client UUID
+    },
+
+    fastboot: {
+      hostWhitelist: [/^localhost:\d+$/]  // @todo - add your production fastboot domain (fastboot serving only)
     }
   };
 
