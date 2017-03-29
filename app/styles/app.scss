@@ -1,15 +1,19 @@
 @import "ember-bootstrap/bootstrap";
 
+
 $ember-power-select-default-border-radius: 0;
 $ember-power-select-multiple-option-border-radius: 4px;
 
 @import "ember-power-select";
 
-/*body {
+
+$global-margin: 2em;
+
+body {
   margin: ($global-margin * 2);
 }
 
-input, label {
+/*input, label {
   margin: 0 $global-margin 0;
 }
 
@@ -22,7 +26,7 @@ label {
 }
 
 .menu {
-  background-color: $light-gray;
+//  background-color: $light-gray;
   margin-bottom: $global-margin * 2;
 
   > li > span {
@@ -30,7 +34,7 @@ label {
     padding: 0.7rem 1rem;
     line-height: 1;
   }
-}
+}*/
 
 .unpublished {
   background-color: #fed;
@@ -38,4 +42,4 @@ label {
 
 .create-form {
   margin: 0 ($global-margin * 2) ($global-margin * 2);
-}*/
+}
