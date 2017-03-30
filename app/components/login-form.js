@@ -4,7 +4,6 @@ const {inject: {service}} = Ember;
 
 export default Ember.Component.extend({
   session: service(),
-  store: service(),
 
   actions: {
     authenticate() {
