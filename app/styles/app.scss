@@ -7,10 +7,15 @@ $ember-power-select-multiple-option-border-radius: 4px;
 @import "ember-power-select";
 
 
-$global-margin: 2em;
+$global-margin: 1em;
 
 body {
   margin: ($global-margin * 2);
+  padding-top: 50px;  // Move down content because we have a fixed navbar that is 50px tall
+}
+
+.navbar-brand {
+  padding: 15px 30px 15px 15px;
 }
 
 /*input, label {
