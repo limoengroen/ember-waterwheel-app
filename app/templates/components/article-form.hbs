@@ -1,77 +1,79 @@
 {{#each model.errors as |error|}}
-    <div class="callout alert">
+  {{#if (or error.title error.detail)}}
+    <div class="alert alert-danger" role="alert">
         <h3>{{error.title}}</h3>
         <p>{{error.detail}}</p>
     </div>
+  {{/if}}
 {{/each}}
 
-<form {{action 'save' model on="submit"}} class="clearfix {{unless model.status 'unpublished'}}">
-    <div class="expanded row">
-        <div class="small-12 medium-8 columns">
-            <label for="title">Title</label>
-            {{input value=model.title name="title"}}
-            {{#each model.errors.title as |error|}}
-                <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-            {{/each}}
+<div class="clearfix {{unless model.status 'unpublished'}}">
+  {{#bs-form model=model onSubmit=(action 'save') as |form|}}
+    <div class="row">
+      <div class="col-xs-12 col-md-8">
+        {{form.element label="Title" property="title"}}
+        {{#each model.errors.title as |error|}}
+          <div class="alert alert-danger" role="alert"><strong>Error</strong><br/>{{error.message}}</div>
+        {{/each}}
 
-            <fieldset class="fieldset">
-                <legend>Body</legend>
-                <label for="body__summary">Summary</label>
-                {{textarea value=model.body.summary name="body__summary" rows=3}}
-                {{#each model.errors.body__summary as |error|}}
-                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-                {{/each}}
+        <fieldset class="fieldset">
+          <legend>Body</legend>
+          {{form.element label="Summary" controlType="textarea" property="body.summary" rows=3}}
+          {{#each model.errors.body__summary as |error|}}
+            <div class="alert alert-danger" role="alert"><strong>Error</strong><br/>{{error.message}}</div>
+          {{/each}}
 
-                <label for="body__value">Body</label>
-                {{textarea value=model.body.value name="body__value" rows=5}}
-                {{#each model.errors.body__value as |error|}}
-                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-                {{/each}}
+          {{form.element label="Body" controlType="textarea" property="body.value" rows=5}}
+          {{#each model.errors.body__value as |error|}}
+            <div class="alert alert-danger" role="alert"><strong>Error</strong><br/>{{error.message}}</div>
+          {{/each}}
 
-                <label for="body__format">Text format</label>
-                <select name="body__format" onchange={{action (mut model.body.format) value="target.value"}}>
-                    {{#each text_formats key="value" as |option|}}
-                        <option value="{{option.value}}" selected={{eq model.body.format option.value}}>{{option.label}}</option>
-                    {{/each}}
-                </select>
-                {{#each model.errors.body__format as |error|}}
-                    <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-                {{/each}}
-            </fieldset>
+          {{#form.element label="Format" property="body.format" as |el|}}
+            <select onchange={{action (mut el.value) value="target.value"}}>
+              {{#each text_formats key="value" as |option|}}
+                <option value="{{option.value}}" selected={{eq el.value option.value}}>{{option.label}}</option>
+              {{/each}}
+            </select>
+          {{/form.element}}
+          {{#each model.errors.body__format as |error|}}
+            <div class="alert alert-danger" role="alert"><strong>Error</strong><br/>{{error.message}}</div>
+          {{/each}}
+        </fieldset>
 
-            <label>Tags</label>
-            {{#power-select-multiple
-                    options=tags
-                    selected=model.field_tags
-                    searchField="name"
-                    onchange=(action (mut model.field_tags))
-                    loadingMessage="Loading..."
-            as |tag|
-            }}
-                {{tag.name}}
-            {{/power-select-multiple}}
+        {{#form.element label="Tags" property="field_tags" as |el|}}
+          {{#power-select-multiple
+              options=tags
+              selected=el.value
+              searchField="name"
+              onchange=(action (mut el.value))
+              loadingMessage="Loading..."
+          as |tag|
+          }}
+            {{tag.name}}
+          {{/power-select-multiple}}
+        {{/form.element}}
 
-            {{#each model.errors.base as |error|}}
-                <div class="callout alert"><strong>Error</strong><br/>{{error.message}}</div>
-            {{/each}}
+        {{#each model.errors.base as |error|}}
+          <div class="alert alert-danger" role="alert"><strong>Error</strong><br/>{{error.message}}</div>
+        {{/each}}
 
-            <button type="submit" class="button">Save</button>
-            <button type="button" class="button hollow" {{action 'cancel'}}>Cancel</button>
-            {{#if model.uuid}}
-                <button type="button" class="button alert float-right" {{action 'delete'}}>Delete</button>
-            {{/if}}
-        </div>
-        <div class="small-12 medium-4 columns">
-            <ul>
-                <li><i>Author:</i> {{model.uid.name}}</li>
-                <li><i>Created</i>: {{model.createdDate}}</li>
-                <li><i>NID</i>: {{model.nid}}</li>
-                <li><i>UUID</i>: {{model.uuid}}</li>
-            </ul>
-            <label>
-                {{input checked=model.status type="checkbox" name="status"}}
-                Published
-            </label>
-        </div>
+        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+        {{#bs-button onClick=(action 'cancel')}}Cancel{{/bs-button}}
+        {{#if model.uuid}}
+          {{#bs-button type="danger" onClick=(action 'delete')}}Delete{{/bs-button}}
+        {{/if}}
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <ul>
+          <li><i>Author:</i> {{model.uid.name}}</li>
+          <li><i>Created</i>: {{model.createdDate}}</li>
+          <li><i>NID</i>: {{model.nid}}</li>
+          <li><i>UUID</i>: {{model.uuid}}</li>
+        </ul>
+        <label>
+          {{form.element label="Published" controlType="checkbox" property="status"}}
+        </label>
+      </div>
     </div>
-</form>
+  {{/bs-form}}
+</div>
