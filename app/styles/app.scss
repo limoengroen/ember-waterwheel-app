@@ -18,6 +18,10 @@ body {
   padding: 15px 30px 15px 15px;
 }
 
+.alert {
+  margin: $global-margin 0;
+}
+
 /*input, label {
   margin: 0 $global-margin 0;
 }
