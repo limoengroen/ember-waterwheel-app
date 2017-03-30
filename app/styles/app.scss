@@ -1,18 +1,28 @@
-@import "settings";
-@import 'foundation';
+@import "ember-bootstrap/bootstrap";
 
-@include foundation-everything;
 
-$ember-power-select-default-border-radius: 0;
+$ember-power-select-default-border-radius: 4px;
 $ember-power-select-multiple-option-border-radius: 4px;
 
 @import "ember-power-select";
 
+
+$global-margin: 1em;
+
 body {
   margin: ($global-margin * 2);
+  padding-top: 50px;  // Move down content because we have a fixed navbar that is 50px tall
 }
 
-input, label {
+.navbar-brand {
+  padding: 15px 30px 15px 15px;
+}
+
+.alert {
+  margin: $global-margin 0;
+}
+
+/*input, label {
   margin: 0 $global-margin 0;
 }
 
@@ -25,7 +35,7 @@ label {
 }
 
 .menu {
-  background-color: $light-gray;
+//  background-color: $light-gray;
   margin-bottom: $global-margin * 2;
 
   > li > span {
@@ -33,7 +43,7 @@ label {
     padding: 0.7rem 1rem;
     line-height: 1;
   }
-}
+}*/
 
 .unpublished {
   background-color: #fed;

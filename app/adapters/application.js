@@ -6,7 +6,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.APP.host,
   namespace: 'jsonapi',
   authorizer: 'authorizer:oauth2',
-  coalesceFindRequests: true,
+  // coalesceFindRequests: true,  // @todo - fix JSON API filtering query and re-enable
 
   pathForType(type) {
     let entityPath;

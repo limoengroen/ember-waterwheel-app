@@ -1,38 +1,42 @@
-<h1>Ember-Drupal Waterwheel App</h1>
-
-<ul class="menu">
-    <li>
-        {{#link-to 'index'}}
-            Home
-        {{/link-to}}
-    </li>
-    <li>
-        {{#link-to 'articles'}}
-            Articles
-        {{/link-to}}
-    </li>
-    <li>
-        {{#link-to 'users'}}
-            Users
-        {{/link-to}}
-    </li>
-    <li>
-        {{#link-to 'tags'}}
-            Tags
-        {{/link-to}}
-    </li>
-    {{#if session.isAuthenticated}}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to 'index' class="navbar-brand"}}Ember-Drupal Waterwheel App{{/link-to}}
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
         <li>
-            <span>Logged in as {{session.data.authenticated.username}}</span>
+          {{#link-to 'articles' class="nav-item nav-link"}}Articles{{/link-to}}
         </li>
         <li>
+          {{#link-to 'users' class="nav-item nav-link"}}Users{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'tags' class="nav-item nav-link"}}Tags{{/link-to}}
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {{#if session.isAuthenticated}}
+          <li>
+            <span class="navbar-text">Logged in as {{session.data.authenticated.username}}</span>
+          </li>
+          <li>
             <a {{action 'invalidateSession'}} href="#">Logout</a>
-        </li>
-    {{else}}
-        <li>
+          </li>
+        {{else}}
+          <li>
             {{#link-to 'login'}}Login{{/link-to}}
-        </li>
-    {{/if}}
-</ul>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
 
 {{yield}}

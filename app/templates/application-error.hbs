@@ -1,7 +1,7 @@
 {{#top-nav}}{{/top-nav}}
 
 {{#each model.errors as |error|}}
-    <div class="callout alert">
+    <div class="alert alert-danger" role="alert">
         <h3>{{error.title}}</h3>
         <p>{{error.detail}}</p>
     </div>
