@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         {{#if session.isAuthenticated}}
           <li>
-            <span class="navbar-text">Logged in as {{session.data.authenticated.username}}</span>
+            <span class="navbar-text">Logged in as {{currentUser.user.name}}</span>
           </li>
           <li>
             <a {{action 'invalidateSession'}} href="#">Logout</a>
