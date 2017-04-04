@@ -67,7 +67,7 @@ You can run the application using the Ember CLI:
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
-or using Fastboot:
+or using Fastboot (server-side rendering):
 * `ember fastboot --serve-assets`
 * Visit your app at [http://localhost:3000](http://localhost:3000).
 
