@@ -9,7 +9,7 @@ export default OAuth2PasswordGrant.extend({
   clientId: ENV.APP.oauth2ClientId,
 
   authenticate(username /*, password, scope = [], headers = {}*/) {
-    // Add username to data that will be kept by the session service
+    // Include username in returned data for use by the session service
     return new RSVP.Promise((resolve, reject) => {
       this._super(...arguments).then(data => {
         data['username'] = username;

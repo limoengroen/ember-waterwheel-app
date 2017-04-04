@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import SessionService from 'ember-simple-auth/services/session';
 
 const { computed, RSVP, isEmpty, inject: {service} } = Ember;
@@ -17,7 +18,7 @@ export default SessionService.extend({
   currentUser: computed.oneWay('session.currentUser'),
 
   authenticate() {
-    return new RSVP.Promise((resolve, reject) => {
+    return new RSVP.Promise((/*resolve, reject*/) => {
       this._super(...arguments).then(() => {
         const username = this.get('data.authenticated.username');
         if (!isEmpty(username)) {
@@ -29,9 +30,5 @@ export default SessionService.extend({
         }
       });
     });
-  },
-
-  invalidate() {
-    this._super(...arguments);
   }
 });
