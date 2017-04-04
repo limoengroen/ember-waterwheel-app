@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const {inject: {service}} = Ember;
+const { inject: {service}, Logger } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  currentUser: service(),
+  session: service(),
 
   model(params) {
     let record = this.store.createRecord('node--article', params);
@@ -17,7 +17,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
 
     record.set('status', 1);
-    record.set('uid', this.get('currentUser').get('user'));
+    const currentUser = this.get('session').get('currentUser');
+    record.set('uid', this.get('store').peekRecord('user--user', currentUser.uuid));
 
     return record;
   },
@@ -48,8 +49,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       record.save()
         .then(() => this.transitionTo('articles'))
         .catch((adapterError) => {
-          console.log("Save failed: " + adapterError);
-          Ember.Logger.debug(adapterError);
+          Logger.error("Save failed:", adapterError);
         });
     },
 

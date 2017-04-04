@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { Logger } = Ember;
+
 export default Ember.Route.extend({
   model(params) {
     return this.store.findRecord('node--article', params.uuid, {include: 'uid'});
@@ -30,8 +32,7 @@ export default Ember.Route.extend({
       record.save()
         .then(() => this.transitionTo('articles'))
         .catch((adapterError) => {
-          console.log("Save failed: " + adapterError);
-          Ember.Logger.debug(adapterError);
+          Logger.error("Save failed:", adapterError);
         });
     },
 
@@ -46,7 +47,7 @@ export default Ember.Route.extend({
           record.unloadRecord(); // @todo - This method is marked @private, but is necessary to remove record from the articles listing
           this.transitionTo('articles');
         })
-        .catch((reason) => console.log("Delete failed: " + reason));
+        .catch((reason) => Logger.error("Delete failed:", reason));
     }
   }
 });
