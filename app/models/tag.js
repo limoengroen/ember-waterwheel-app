@@ -5,5 +5,5 @@ export default DS.Model.extend({
   uuid: DS.attr('string'),
   name: DS.attr('string'),
   description: DS.attr(),
-  articles: DS.hasMany('node--article', {async: true})
+  articles: DS.hasMany('article', { async: true })
 });

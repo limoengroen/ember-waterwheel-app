@@ -16,8 +16,8 @@ export default DS.Model.extend({
       return "[No Date]";
     }
   }),
-  uid: DS.belongsTo('user--user', {async: true}),
+  uid: DS.belongsTo('user', { async: true }),
   title: DS.attr(),
   body: DS.attr(),
-  field_tags: DS.hasMany('taxonomy-term--tag', {async: true}),
+  field_tags: DS.hasMany('tag', { async: true }),
 });

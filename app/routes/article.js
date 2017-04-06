@@ -4,14 +4,14 @@ const { Logger } = Ember;
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('node--article', params.uuid, {include: 'uid'});
+    return this.store.findRecord('article', params.uuid, {include: 'uid'});
   },
 
   setupController(controller /*, model*/) {
     this._super(...arguments);
 
     // Side-load all tags so we can autocomplete based on them
-    controller.set('tags', this.store.findAll('taxonomy-term--tag'));
+    controller.set('tags', this.store.findAll('tag'));
 
     // @todo - un-hardcode these
     controller.set('text_formats', [

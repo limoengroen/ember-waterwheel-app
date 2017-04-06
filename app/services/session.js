@@ -22,7 +22,7 @@ export default SessionService.extend({
       this._super(...arguments).then(() => {
         const username = this.get('data.authenticated.username');
         if (!isEmpty(username)) {
-          this.get('store').query('user--user', {name: username})
+          this.get('store').query('user', { name: username })
             .then(users => {
               const user = users.objectAt(0);
               this.set('session.currentUser', user);

@@ -5,5 +5,5 @@ export default DS.Model.extend({
   uuid: DS.attr(),
   name: DS.attr(),
   mail: DS.attr(),
-  articles: DS.hasMany('node--article', {async: true}) // Can make a one-sided relationship by commenting-out
+  articles: DS.hasMany('article', { async: true }) // Can make a one-sided relationship by commenting-out
 });

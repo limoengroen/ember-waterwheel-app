@@ -18,6 +18,10 @@ module.exports = function(environment) {
     },
 
     APP: {
+      host: 'http://yourbackendsite.com',  // @todo - Fill in your Drupal backend URL
+      oauth2TokenEndpoint: '/oauth/token',
+      oauth2ClientId: '11111111-2222-3333-4444-555555555555',  // @todo - Fill in your client UUID
+
       // Here you can pass flags/options to your application instance
       // when it is created
       host: 'http://ember-crud.dd:8080',                      // @todo - Fill in your Drupal backend URL
@@ -29,6 +33,12 @@ module.exports = function(environment) {
       hostWhitelist: [/^localhost:\d+$/]  // @todo - add your production fastboot domain (fastboot serving only)
     }
   };
+
+  ENV.drupalEntityModels = {  // @todo - modify to map all entities you want to use
+    "article": {},  // Map 'article' Ember data model to Drupal/JSON API type 'node--article'
+    "user": { entity: 'user', bundle: 'user' },  // Map 'user' model to type 'user--user'
+    "tag": { entity: 'taxonomy-term', bundle: 'tags' }  // Map 'tag' model to type 'taxonomy-term--tags'
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

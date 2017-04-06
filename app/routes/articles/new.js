@@ -7,7 +7,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
 
   model(params) {
-    let record = this.store.createRecord('node--article', params);
+    let record = this.store.createRecord('article', params);
 
     // Initialize field defaults
     record.set('body', {
@@ -18,7 +18,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     record.set('status', 1);
     const currentUser = this.get('session').get('currentUser');
-    record.set('uid', this.get('store').peekRecord('user--user', currentUser.uuid));
+    record.set('uid', this.get('store').peekRecord('user', currentUser.uuid));
 
     return record;
   },
@@ -27,7 +27,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this._super(...arguments);
 
     // Side-load all tags so we can autocomplete based on them
-    controller.set('tags', this.store.findAll('taxonomy-term--tag'));
+    controller.set('tags', this.store.findAll('tag'));
 
     // @todo - un-hardcode these
     controller.set('text_formats', [
