@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { inject: {service}, Logger } = Ember;
+const { inject: {service} } = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
@@ -47,10 +47,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     save() {
       let record = this.controller.get('model');
       record.save()
-        .then(() => this.transitionTo('articles'))
-        .catch((adapterError) => {
-          Logger.error("Save failed:", adapterError);
-        });
+        .then(() => this.transitionTo('articles'));
     },
 
     cancel() {

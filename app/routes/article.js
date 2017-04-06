@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-const { Logger } = Ember;
-
 export default Ember.Route.extend({
   model(params) {
     return this.store.findRecord('article', params.uuid, {include: 'uid'});
@@ -30,10 +28,7 @@ export default Ember.Route.extend({
     save() {
       let record = this.controller.get('model');
       record.save()
-        .then(() => this.transitionTo('articles'))
-        .catch((adapterError) => {
-          Logger.error("Save failed:", adapterError);
-        });
+        .then(() => this.transitionTo('articles'));
     },
 
     cancel() {
@@ -46,8 +41,7 @@ export default Ember.Route.extend({
         .then(() => {
           this.store.unloadRecord(record);
           this.transitionTo('articles');
-        })
-        .catch((reason) => Logger.error("Delete failed:", reason));
+        });
     }
   }
 });
