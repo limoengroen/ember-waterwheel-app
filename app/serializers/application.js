@@ -27,10 +27,13 @@ export default DrupalJSONAPISerializer.extend({
   },
 
   keyForRelationship(key /*, typeClass, method*/) {
+    // Prevent dash-ification of underscores in relationship keys
     return key;
   },
 
   extractErrors(store, typeClass, payload /*, id*/) {
+    // Adapt validation errors returned from the JSON API module so that they
+    // can be easily displayed inline in an edit form.
     payload = this._super(...arguments);
 
     let out = {};
@@ -39,22 +42,21 @@ export default DrupalJSONAPISerializer.extend({
         let error = payload[key].toString();
 
         // Remove the field path from the error message
-        /*        let splitPos = error.indexOf(':');
-         if (splitPos > 0) {
-         error = error.substring(splitPos + 2);
-         }*/
+        /* let splitPos = error.indexOf(':');
+          if (splitPos > 0) {
+          error = error.substring(splitPos + 2);
+        }*/
 
         // Convert '/' in key (ex. 'body/format') to '__'
         key = key.replace('/', '__');
         out[key] = error;
       }
     }
-
-    Ember.Logger.debug(out);
     return out;
   },
 
   serializeHasMany(snapshot, json, relationship) {
+    // Only serialize hasMany relationships that actually contain items
     let hasMany = snapshot.hasMany(relationship.key);
     if (hasMany !== undefined) {
       if (hasMany.length) {
