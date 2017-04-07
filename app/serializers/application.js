@@ -37,21 +37,19 @@ export default DrupalJSONAPISerializer.extend({
     payload = this._super(...arguments);
 
     let out = {};
-    for (let key in payload) {
-      if (payload.hasOwnProperty(key)) {
-        let error = payload[key].toString();
+    Object.keys(payload).forEach(key => {
+      let error = payload[key].toString();
 
-        // Remove the field path from the error message
-        /* let splitPos = error.indexOf(':');
-          if (splitPos > 0) {
-          error = error.substring(splitPos + 2);
-        }*/
+      // Remove the field path (ex. 'title:', 'body.0.format:', etc.) from the error message
+      /* let splitPos = error.indexOf(':');
+        if (splitPos > 0) {
+        error = error.substring(splitPos + 2);
+      }*/
 
-        // Convert '/' in key (ex. 'body/format') to '__'
-        key = key.replace('/', '__');
-        out[key] = error;
-      }
-    }
+      // Convert '/' in key (ex. 'body/format') to '__'
+      key = key.replace('/', '__');
+      out[key] = error;
+    });
     return out;
   },
 
