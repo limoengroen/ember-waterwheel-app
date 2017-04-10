@@ -7,7 +7,7 @@ export default DrupalMapper.extend({
 
   modelNameFor(entity, bundle) {
     return Object.keys(this.map).find(modelName => {
-      let modelMap = this.map[modelName];
+      const modelMap = this.map[modelName];
       modelMap.entity = modelMap.entity || 'node';
 
       const bundleMatches = modelMap.bundle === bundle || modelMap.bundle === undefined && modelName === bundle;
