@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('article', params.uuid, {include: 'uid'});
+    return this.store.findRecord('article', params.uuid, { include: 'uid' });
   },
 
   setupController(controller /*, model*/) {
@@ -13,9 +13,9 @@ export default Ember.Route.extend({
 
     // @todo - un-hardcode these
     controller.set('text_formats', [
-      {value: 'basic_html', label: 'Basic HTML'},
-      {value: 'plain_text', label: 'Plain Text'},
-      {value: 'invalid!', label: 'Invalid!'}
+      { value: 'basic_html', label: 'Basic HTML' },
+      { value: 'plain_text', label: 'Plain Text' },
+      { value: 'invalid!', label: 'Invalid!' }
     ]);
   },
 

@@ -51,16 +51,5 @@ export default DrupalJSONAPISerializer.extend({
       out[key] = error;
     });
     return out;
-  },
-
-  serializeHasMany(snapshot, json, relationship) {
-    // Only serialize hasMany relationships that actually contain items
-    let hasMany = snapshot.hasMany(relationship.key);
-    if (hasMany !== undefined) {
-      if (hasMany.length) {
-        this._super(...arguments);
-      }
-    }
   }
-
 });
