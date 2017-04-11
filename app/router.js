@@ -16,6 +16,8 @@ Router.map(function () {
   this.route('user', { path: '/user/:uuid' });
   this.route('tags');
   this.route('tag', { path: '/tag/:uuid' });
+  this.route('files');
+  this.route('file', { path: '/file/:uuid' });
 });
 
 export default Router;

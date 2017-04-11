@@ -1,0 +1,7 @@
+{{outlet}}
+
+<h2>All Files</h2>
+
+{{#each model as |file|}}
+  <h3>{{#link-to "file" file}}{{file.filename}}{{/link-to}}</h3>
+{{/each}}

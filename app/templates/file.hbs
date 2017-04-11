@@ -1,0 +1,14 @@
+{{outlet}}
+
+<h3>{{model.filename}}</h3>
+
+{{#if model.isWebImage}}
+  <img src="{{model.absoluteUrl}}">
+{{/if}}
+
+<ul>
+  <li>UUID: {{model.uuid}}</li>
+  <li>MIME Type: {{model.filemime}}</li>
+  <li>File Size: {{model.filesize}}</li>
+  <li>URL: {{model.absoluteUrl}}</li>
+</ul>
