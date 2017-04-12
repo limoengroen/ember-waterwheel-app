@@ -1,5 +1,5 @@
 - [x] add File entities
-- [ ] add image field to Articles
+- [x] add image field to Articles
 - [ ] comment code
 - [ ] add changed date to models
 - [x] remove entity IDs, extraneous uuid from models

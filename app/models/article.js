@@ -18,4 +18,5 @@ export default DS.Model.extend({
   title: DS.attr(),
   body: DS.attr(),
   field_tags: DS.hasMany('tag', { async: true }),
+  field_image: DS.belongsTo('file', { async: true })
 });

@@ -6,16 +6,21 @@
 
 {{#each model as |article|}}
     {{#if article.id}}
-        <div class="{{unless article.status 'unpublished'}}">
+        <div class="article {{unless article.status 'unpublished'}} clearfix">
             <h3>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h3>
-            <ul>
+            {{#if article.field_image.isWebImage}}
+              <img class="thumbnail" src="{{article.field_image.absoluteUrl}}">
+            {{/if}}
+            <div>
+              <ul class="attributes">
                 <li>Author: {{article.uid.name}}</li>
                 <li>Created: {{article.createdDate}}</li>
                 <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
-                    &nbsp;{{/each}}
+                  &nbsp;{{/each}}
                 </li>
                 <li>UUID: {{article.id}}</li>
-            </ul>
+              </ul>
+            </div>
         </div>
     {{/if}}
 {{/each}}

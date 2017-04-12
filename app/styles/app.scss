@@ -52,3 +52,15 @@ label {
 .create-form {
   margin: 0 ($global-margin * 2) ($global-margin * 2);
 }
+
+.article {
+  .thumbnail {
+    max-height: 100px;
+    float: left;
+    margin-right: 1em;
+  }
+
+  ul.attributes {
+    list-style-type: none;
+  }
+}
