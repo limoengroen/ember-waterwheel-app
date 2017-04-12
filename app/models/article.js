@@ -11,7 +11,18 @@ export default DS.Model.extend({
       return date.toString();
     }
     else {
-      return "[No Date]";
+      return "";
+    }
+  }),
+  changed: DS.attr(),
+  changedDate: Ember.computed('changed', function () {
+    let changed = this.get('changed');
+    if (changed) {
+      let date = new Date(changed * 1000);
+      return date.toString();
+    }
+    else {
+      return "";
     }
   }),
   uid: DS.belongsTo('user', { async: true }),

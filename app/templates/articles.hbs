@@ -15,6 +15,7 @@
               <ul class="attributes">
                 <li>Author: {{article.uid.name}}</li>
                 <li>Created: {{article.createdDate}}</li>
+                <li>Changed: {{article.changedDate}}</li>
                 <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
                   &nbsp;{{/each}}
                 </li>
