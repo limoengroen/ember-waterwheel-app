@@ -5,8 +5,7 @@
 {{#each model as |user|}}
     <h3>{{#link-to "user" user}}{{user.name}}{{/link-to}}</h3>
     <ul>
-        <li>UID: {{user.uid}}</li>
-        <li>UUID: {{user.uuid}}</li>
+        <li>UUID: {{user.id}}</li>
         <li>E-mail: {{user.mail}}</li>
     </ul>
 {{/each}}

@@ -1,7 +1,8 @@
 - [x] add File entities
 - [ ] add image field to Articles
+- [ ] comment code
 - [ ] add changed date to models
-- [ ] remove entity IDs, separate uuid from models
+- [x] remove entity IDs, extraneous uuid from models
 - [ ] only update portions of models that have changed
 - [x] Rebuild using addon
 - [ ] tests

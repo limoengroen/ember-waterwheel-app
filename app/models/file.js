@@ -12,7 +12,6 @@ const webImageMimeTypes = [
 ];
 
 export default DS.Model.extend({
-  uuid: DS.attr(),
   status: DS.attr('boolean'),
   created: DS.attr(),
   createdDate: Ember.computed('created', function () {

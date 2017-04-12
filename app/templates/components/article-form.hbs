@@ -59,7 +59,7 @@
 
         {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
         {{#bs-button onClick=(action 'cancel')}}Cancel{{/bs-button}}
-        {{#if model.uuid}}
+        {{#if model.id}}
           {{#bs-button type="danger" onClick=(action 'delete')}}Delete{{/bs-button}}
         {{/if}}
       </div>
@@ -67,8 +67,7 @@
         <ul>
           <li><i>Author:</i> {{model.uid.name}}</li>
           <li><i>Created</i>: {{model.createdDate}}</li>
-          <li><i>NID</i>: {{model.nid}}</li>
-          <li><i>UUID</i>: {{model.uuid}}</li>
+          <li><i>UUID</i>: {{model.id}}</li>
         </ul>
         <label>
           {{form.element label="Published" controlType="checkbox" property="status"}}

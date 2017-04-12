@@ -2,8 +2,6 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  nid: DS.attr(),
-  uuid: DS.attr(),
   status: DS.attr('boolean'),
   created: DS.attr(),
   createdDate: Ember.computed('created', function () {

@@ -5,7 +5,7 @@
 <h2>All Articles</h2>
 
 {{#each model as |article|}}
-    {{#if article.uuid}}
+    {{#if article.id}}
         <div class="{{unless article.status 'unpublished'}}">
             <h3>{{#link-to "article" article}}{{article.title}}{{/link-to}}</h3>
             <ul>
@@ -14,7 +14,7 @@
                 <li>Tags: {{#each article.field_tags as |tag|}}{{#link-to "tag" tag}}{{tag.name}}{{/link-to}}
                     &nbsp;{{/each}}
                 </li>
-                <li>UUID: {{article.uuid}}</li>
+                <li>UUID: {{article.id}}</li>
             </ul>
         </div>
     {{/if}}

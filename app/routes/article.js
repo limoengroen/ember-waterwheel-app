@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return this.store.findRecord('article', params.uuid, { include: 'uid' });
+    return this.store.findRecord('article', params.id, { include: 'uid' });
   },
 
   setupController(controller /*, model*/) {
