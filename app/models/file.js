@@ -13,17 +13,6 @@ const webImageMimeTypes = [
 
 export default DS.Model.extend({
   status: DS.attr('boolean'),
-  created: DS.attr(),
-  createdDate: Ember.computed('created', function () {
-    let created = this.get('created');
-    if (created) {
-      let date = new Date(created * 1000);
-      return date.toString();
-    }
-    else {
-      return "[No Date]";
-    }
-  }),
   filename: DS.attr(),
   filemime: DS.attr(),
   filesize: DS.attr(),
