@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+/**
+ * A route for editing a specific Article.
+ */
 export default Ember.Route.extend({
   model(params) {
     return this.store.findRecord('article', params.id, { include: 'uid' });
@@ -9,6 +12,7 @@ export default Ember.Route.extend({
     this._super(...arguments);
 
     // Side-load all tags so we can autocomplete based on them
+    // @todo - make this more efficient
     controller.set('tags', this.store.findAll('tag'));
 
     // @todo - un-hardcode these
@@ -21,6 +25,7 @@ export default Ember.Route.extend({
 
   actions: {
     willTransition() {
+      // Roll the model back to match its previous state if the user navigates away
       this._super(...arguments);
       this.controller.get('model').rollbackAttributes();
     },

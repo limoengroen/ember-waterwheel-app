@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
+/**
+ * Defines the "article" model, which holds an "Article" Drupal entity.
+ */
 export default DS.Model.extend({
   status: DS.attr('boolean'),
   created: DS.attr(),

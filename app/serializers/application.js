@@ -1,9 +1,18 @@
 import DS from 'ember-data';
 import DrupalJSONAPISerializer from 'ember-data-drupal/serializer';
 import { singularize } from 'ember-inflector';
-const {
-  normalizeModelName,
-} = DS;
+
+const { normalizeModelName } = DS;
+
+/**
+ * This Serializer customizes Ember Data's interactions with JSON API endpoints
+ * on the Drupal backend. More specifically, it alters the way Ember models are
+ * converted into JSON text that is added to an HTTP request sent to the Drupal
+ * backend, and how JSON text received in the response is converted back to an
+ * Ember model.
+ *
+ * This customizes the Serializer provided by the ember-data-drupal Ember addon.
+ */
 
 export default DrupalJSONAPISerializer.extend({
   modelNameFromPayloadKey(key) {
@@ -40,7 +49,8 @@ export default DrupalJSONAPISerializer.extend({
     Object.keys(payload).forEach(key => {
       let error = payload[key].toString();
 
-      // Remove the field path (ex. 'title:', 'body.0.format:', etc.) from the error message
+      // @todo - uncomment if desired:
+      // Remove the field path ('title:', 'body.0.format:', etc.) from the error message
       /* let splitPos = error.indexOf(':');
         if (splitPos > 0) {
         error = error.substring(splitPos + 2);

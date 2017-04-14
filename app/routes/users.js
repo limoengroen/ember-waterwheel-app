@@ -1,5 +1,8 @@
 import Ember from 'ember';
 
+/**
+ * A route that lists all Users on the Drupal backend.
+ */
 export default Ember.Route.extend({
   model() {
     return this.get('store').findAll('user');

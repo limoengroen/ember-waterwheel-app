@@ -3,6 +3,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 const { inject: {service} } = Ember;
 
+/**
+ * A route for creating a new Article.
+ */
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
 
@@ -39,6 +42,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     willTransition() {
+      // Roll the model back to match its previous state if the user navigates away
       this._super(...arguments);
       const record = this.controller.get('model');
       record.rollbackAttributes();

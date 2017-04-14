@@ -1,11 +1,11 @@
 - [x] add File entities
 - [x] add image field to Articles
-- [ ] comment code
+- [x] comment code
 - [x] add changed date to models
 - [x] remove entity IDs, extraneous uuid from models
-- [ ] only update portions of models that have changed
 - [x] Rebuild using addon
 - [ ] tests
+- [ ] only update portions of models that have changed
 - [ ] get text formats from Drupal config
 - [ ] sync deleted entities from backend
 - [ ] fix remaining @todos

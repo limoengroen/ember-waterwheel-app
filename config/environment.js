@@ -2,13 +2,13 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'ember-drupal-waterwheel-app',
+    modulePrefix: 'ember-drupal-waterwheel-app',  // @todo - Change all occurrences of this to your application's name
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
-        // Here you can enable experimental features on an ember canary build
+        // Here you can enable experimental Ember features on an Ember canary build
         // e.g. 'with-controller': true
       },
       EXTEND_PROTOTYPES: {
