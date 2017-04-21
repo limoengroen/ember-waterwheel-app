@@ -30,7 +30,8 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.drupalEntityModels = {  // @todo - modify to map all entities you want to use
+  ENV.drupalEntityModels = {
+    // @todo - map any additional Drupal entities you want to use
     "article": {},  // Map 'article' Ember data model to Drupal/JSON API type 'node--article'
     "user": { entity: 'user', bundle: 'user' },  // Map 'user' model to type 'user--user'
     "tag": { entity: 'taxonomy_term', bundle: 'tags' },  // Map 'tag' model to type 'taxonomy-term--tags'

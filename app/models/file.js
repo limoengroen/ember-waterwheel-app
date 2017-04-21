@@ -27,7 +27,7 @@ export default DS.Model.extend({
   absoluteUrl: Ember.computed('url', function () {
     return ENV.APP.host + '/' + this.get('url');
   }),
-  uid: DS.belongsTo('user', { async: true }),
+//  uid: DS.belongsTo('user', { async: true }),
 
   isWebImage: Ember.computed('filemime', function () {
     return webImageMimeTypes.includes(this.get('filemime'));
