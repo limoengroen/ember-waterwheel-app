@@ -1,13 +1,17 @@
+![Waterwheel Ecosystem](https://raw.githubusercontent.com/acquia/waterwheel-js/assets/waterwheel.png)
+
 # Ember-Drupal Waterwheel App
 
-This is a sample app for demonstrating the integration of Ember and Drupal using JSON API. It demonstrates listing 
-Article nodes, users, and taxonomy terms from the Drupal backend, in addition to editing, creating, and 
+This is a sample app for demonstrating the integration of Ember and Drupal using JSON API. It demonstrates listing
+Article nodes, users, and taxonomy terms from the Drupal backend, in addition to editing, creating, and
 deleting Articles.
 
 Fastboot is supported, for server-side rendering of the application.
 
 **Also check out our Ember addon at [ember-drupal-waterwheel](https://github.com/acquia/ember-drupal-waterwheel),
 which can help you easily add Drupal integration to a new or existing Ember app.**
+
+---
 
 ## Prerequisites
 
@@ -36,12 +40,12 @@ You will need the following things properly installed on your computer.
     * `openssl genrsa -out private.key 2048`
     * `openssl rsa -in private.key -pubout > public.key`
 
-1. On your Drupal site, browse to `/admin/config/people/simple_oauth` and enter the full paths to both encryption keys 
+1. On your Drupal site, browse to `/admin/config/people/simple_oauth` and enter the full paths to both encryption keys
 in the Simple OAuth Settings.
 
-1. Browse to `/admin/config/people/simple_oauth/oauth2_client/add` to create OAuth client settings for this app. For 
-"Label", specify something like "Ember Waterwheel app". Leave all other settings at their defaults and click "Save". 
-Copy the UUID from the list of OAuth clients and paste it into this application's `config/environment.js` at the location 
+1. Browse to `/admin/config/people/simple_oauth/oauth2_client/add` to create OAuth client settings for this app. For
+"Label", specify something like "Ember Waterwheel app". Leave all other settings at their defaults and click "Save".
+Copy the UUID from the list of OAuth clients and paste it into this application's `config/environment.js` at the location
 marked with a @todo. Also fill in the Drupal site's URL in that same file.
 
 1. CORS needs to be enabled on the Drupal site. Place/modify the following lines at the bottom of your
