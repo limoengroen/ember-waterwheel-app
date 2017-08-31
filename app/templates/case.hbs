@@ -4,8 +4,11 @@
 <h3>{{model.title}}</h3>
 
 {{#if model.field_image}}
-	<img class="thumbnail" src="{{model.field_image.absoluteUrl}}">
+	<div class="image">
+		<img class="thumbnail" src="{{model.field_image.absoluteUrl}}">
+	</div>
 {{/if}}
+<div class="content">
 
 {{#each model.field_paragraphs as |paragraph|}}
 	<div>
@@ -14,5 +17,6 @@
 {{/each}}
 
 {{outlet}}
+</div>
 
 </article>
