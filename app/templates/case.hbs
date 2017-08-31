@@ -1,0 +1,18 @@
+<article class="case">
+
+
+<h3>{{model.title}}</h3>
+
+{{#if model.field_image}}
+	<img class="thumbnail" src="{{model.field_image.absoluteUrl}}">
+{{/if}}
+
+{{#each model.field_paragraphs as |paragraph|}}
+	<div>
+		{{component paragraph.p_type data=paragraph }}
+	</div>
+{{/each}}
+
+{{outlet}}
+
+</article>

@@ -30,7 +30,7 @@ body {
   margin: 0 ($global-margin * 2) ($global-margin * 2);
 }
 
-.article {
+.article, .case {
   .thumbnail {
     max-height: 100px;
     float: left;

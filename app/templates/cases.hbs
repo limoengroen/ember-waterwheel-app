@@ -1,0 +1,11 @@
+<h2>All Cases</h2>
+
+{{#each model as |case|}}
+	<div>
+		{{#link-to "case" case}}
+			<h3>{{case.title}}</h3>
+		{{/link-to}}
+	</div>
+{{/each}}
+
+{{outlet}}
